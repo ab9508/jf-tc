@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://my.oschina.net/chixn/blog/471755 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script charset="utf-8" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/UrlChangeTracker.js.下载"></script><script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/osd.js.下载"></script>
+    
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="referrer" content="always">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA</title>
+            <meta name="keywords" content="弦歌,chixn,IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间,OSCHINA博客">
+                <meta name="description" content="JFinal官方的教程都是使用Eclipse进行开发的，而使用Intellij IDEA来做开发，不少地方和Eclipse区别还是很大的。 本文参考了网上不少文章，主要沿用了网友的内容，一步一步做了尝试后记录下来，感谢万能的互联网。 分别做了两个Module，分别使用Jetty和tomcat来运行。均测试均可正常跑起来。 本文看起来虽然很长，但实际...">
+        <link rel="stylesheet" type="text/css" href="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/semantic.min.css">
+                <link type="text/css" rel="stylesheet" href="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/space.bc139e5b.css">        <script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/hm.js.下载"></script><script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/push.js.下载"></script><script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/f(6).txt"></script><script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/f(7).txt" id="google_shimpl"></script><script type="text/javascript">window.__STATIC_DOMAIN = "https://static.oschina.net";</script>
+    <script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/jquery.min.js.下载"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.oschina.net/new-osc/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="最新开源项目" href="https://www.oschina.net/project/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新开源资讯" href="https://www.oschina.net/news/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新问题列表" href="https://www.oschina.net/question/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新翻译列表" href="https://www.oschina.net/translate/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新博客列表" href="https://www.oschina.net/blog/rss">
+    <link rel="alternate" type="application/rss+xml" title="推荐博客列表" href="https://www.oschina.net/blog/rss?show=more">
+    <link rel="alternate" type="application/rss+xml" title="推荐软件列表" href="https://www.oschina.net/project/rss?show=recomms">
+    <link rel="alternate" type="application/rss+xml" title="最新代码分享列表" href="https://www.oschina.net/code/rss">
+    <link rel="alternate" type="application/rss+xml" title="OSCHINA - 源码列表" href="https://www.oschina.net/code/source_rss">
+        <link rel="preload" href="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/f(8).txt" as="script"><script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/f(8).txt"></script><script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/share.js.下载"></script><script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/radarChart.js.下载"></script><script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/vue.min.js.下载"></script><script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/vue.min.js.下载"></script><script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/jquery.caret.min.js.下载"></script><script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/jquery.atwho.min.js.下载"></script></head>
+<body class="pushable dimmable"><svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;"><symbol id="oicon-plus" viewBox="0 0 1024 1024"><path d="M1024 426.666667H597.333333V0H426.666667v426.666667H0v170.666666h426.666667v426.666667h170.666666V597.333333h426.666667z"></path></symbol><symbol id="oicon-write" viewBox="0 0 1024 1024"><path d="M975.234437 1023.9744H48.765563A48.739963 48.739963 0 0 1 0.0256 975.234437V48.765563C0.0256 21.835709 21.835709 0.0256 48.765563 0.0256H585.212339a24.369981 24.369981 0 1 1 0 48.739963h-511.9744a24.369981 24.369981 0 0 0-24.421179 24.421179V950.762061c0 13.464927 10.956252 24.421179 24.421179 24.421179h877.524122a24.369981 24.369981 0 0 0 24.421179-24.421179v-511.9744a24.369981 24.369981 0 0 1 48.739963 0v536.395579a48.739963 48.739963 0 0 1-48.739963 48.739963z m-463.592819-316.912154v0.102395a24.062797 24.062797 0 0 1-23.909205 24.216389H316.272187a24.062797 24.062797 0 0 1-23.909205-24.216389c0-0.460777 0.20479-0.819159 0.255988-1.279936v-170.129093c0-6.450877 2.662267-12.59457 7.321234-17.099945L293.079747 512 790.411679 14.668068a48.739963 48.739963 0 0 1 68.962951 0l137.925904 137.925903a48.739963 48.739963 0 0 1 0 68.962952L511.641618 707.062246zM945.642317 169.591521l-103.470026-103.418829a24.369981 24.369981 0 0 0-34.455878 0L340.488576 533.298135a19.455027 19.455027 0 0 1 0.511974 2.457477v147.243838h125.689716l478.952051-478.952052a24.369981 24.369981 0 0 0 0-34.558272h-0.051198z"></path></symbol><symbol id="oicon-ask" viewBox="0 0 1186 1024"><path d="M154.565371 1009.712762V780.190476H81.422514C41.096419 780.190476 8.279657 747.373714 8.279657 707.047619v-633.904762C8.279657 32.816762 41.096419 0 81.422514 0h1024c40.326095 0 73.142857 32.816762 73.142857 73.142857v633.904762c0 40.326095-32.816762 73.142857-73.142857 73.142857H384.087657L154.565371 1009.712762zM81.422514 48.761905a24.380952 24.380952 0 0 0-24.380952 24.380952v633.904762a24.380952 24.380952 0 0 0 24.380952 24.380952H203.327276v160.572953L363.900228 731.428571H1105.422514a24.380952 24.380952 0 0 0 24.380953-24.380952v-633.904762a24.380952 24.380952 0 0 0-24.380953-24.380952h-1024zM349.61299 390.095238a48.761905 48.761905 0 1 0 97.52381 0 48.761905 48.761905 0 0 0-97.52381 0z m390.095238 0a48.761905 48.761905 0 1 0 97.52381 0 48.761905 48.761905 0 0 0-97.52381 0z m-195.047619 0a48.761905 48.761905 0 1 0 97.52381 0 48.761905 48.761905 0 0 0-97.52381 0z"></path></symbol><symbol id="oicon-trending" viewBox="0 0 1106 1024"><path d="M0 290.766798m55.308301 0l0 0q55.308301 0 55.3083 55.3083l0 608.391307q0 55.308301-55.3083 55.3083l0 0q-55.308301 0-55.308301-55.3083l0-608.391307q0-55.308301 55.308301-55.3083Z" fill="#F5A623"></path><path d="M331.849803 14.225295m55.308301 0l0 0q55.308301 0 55.308301 55.3083l0 884.93281q0 55.308301-55.308301 55.3083l0 0q-55.308301 0-55.308301-55.3083l0-884.93281q0-55.308301 55.308301-55.3083Z" fill="#F5A623" opacity=".8"></path><path d="M663.699607 401.383399m55.3083 0l0 0q55.308301 0 55.308301 55.3083l0 497.774706q0 55.308301-55.308301 55.3083l0 0q-55.308301 0-55.3083-55.3083l0-497.774706q0-55.308301 55.3083-55.3083Z" fill="#F5A623" opacity=".6"></path><path d="M995.54941 124.841896m55.308301 0l0 0q55.308301 0 55.3083 55.308301l0 774.316208q0 55.308301-55.3083 55.3083l0 0q-55.308301 0-55.308301-55.3083l0-774.316208q0-55.308301 55.308301-55.308301Z" fill="#F5A623" opacity=".4"></path></symbol><symbol id="oicon-gitee" viewBox="0 0 1024 1024"><path d="M966.524718 400.672821H456.520205c-24.497231 0-44.347077 19.954872-44.347077 44.557128v133.540102c0 24.602256 19.849846 44.530872 44.347077 44.530872h288.295385c33.266872 0 44.320821 11.132718 44.347077 44.530872 0.026256 89.035487-50.884923 133.566359-133.041231 133.566359h-376.779487c-24.602256 0-44.530872-19.954872-44.530872-44.530872v-400.67282c0-73.780513 59.575795-133.592615 133.014974-133.592616h598.593641c24.470974 0 44.320821-19.928615 44.320821-44.504615V44.530872C1010.740513 19.928615 990.916923 0 966.419692 0H367.826051C171.979487 0 13.128205 159.455179 13.128205 356.168205v623.32718C13.128205 1004.045128 32.978051 1024 57.475282 1024h598.646154c196.187897 0 352.439795-170.325333 354.619077-367.327179 0.131282-11.106462 0.131282-200.33641 0.131282-211.442872a44.478359 44.478359 0 0 0-44.347077-44.530872z"></path></symbol><symbol id="oicon-world" viewBox="0 0 1024 1024"><path d="M921.6 204.8h-1.024A510.464 510.464 0 0 0 512 0C229.696 0 0 229.696 0 512s229.696 512 512 512c167.04 0 315.072-80.64 408.576-204.8h1.024v-1.28C985.6 732.416 1024 626.816 1024 512s-38.4-220.416-102.4-305.92V204.8zM358.4 891.456A409.984 409.984 0 0 1 102.4 512c0-17.408 1.408-34.432 3.52-51.2H153.6l51.2 102.4v102.4L307.2 768l51.2 51.2v72.256zM512 921.6a408.32 408.32 0 0 1-96.448-11.904L460.8 819.2l51.2-102.4V614.4H409.6l-51.2-51.2h-51.2L256 460.8l51.2-102.4 51.2-51.2 51.2-51.2 51.2-102.4v-47.68c16.768-2.112 33.792-3.52 51.2-3.52a407.04 407.04 0 0 1 256 90.368V256l-51.2 102.4 51.2 51.2v51.2l-102.4 51.2-51.2 52.032 51.2 50.368 51.2 51.2 51.2 102.4 33.472 33.472A408.32 408.32 0 0 1 512 921.6z"></path></symbol><symbol id="oicon-setting" viewBox="0 0 1162 1024"><path d="M1055.479204 128.810127H442.676311c-10.415913-55.551537-57.287523-97.21519-116.311031-97.21519-57.287523 0-105.895118 41.663653-116.31103 97.21519H53.815552c-10.415913 0-19.095841 8.679928-19.095841 20.831826s8.679928 20.831826 20.831826 20.831826h156.238698c10.415913 55.551537 57.287523 97.21519 116.311031 97.21519 57.287523 0 105.895118-41.663653 116.311031-97.21519h611.066907c12.151899 0 20.831826-8.679928 20.831827-20.831826s-8.679928-20.831826-20.831827-20.831826zM328.101266 224.289331c-41.663653 0-76.383363-34.719711-76.383364-76.383364 0-41.663653 34.719711-76.383363 76.383364-76.383363 41.663653 0 76.383363 34.719711 76.383363 76.383363 0 41.663653-34.719711 76.383363-76.383363 76.383364zM1055.479204 840.564195H637.106691c-10.415913-55.551537-57.287523-97.21519-116.311031-97.21519-57.287523 0-105.895118 41.663653-116.311031 97.21519H55.551537c-12.151899 0-20.831826 8.679928-20.831826 20.831827s8.679928 20.831826 20.831826 20.831826h348.933092c10.415913 55.551537 57.287523 97.21519 116.311031 97.21519 57.287523 0 105.895118-41.663653 116.311031-97.21519H1055.479204c12.151899 0 20.831826-8.679928 20.831827-20.831826 0-10.415913-8.679928-20.831826-20.831827-20.831827z m-534.683544 97.21519c-41.663653 0-76.383363-34.719711-76.383363-76.383363 0-41.663653 34.719711-76.383363 76.383363-76.383364 41.663653 0 76.383363 34.719711 76.383364 76.383364-1.735986 41.663653-34.719711 76.383363-76.383364 76.383363zM1055.479204 484.687161h-67.703435c-10.415913-55.551537-57.287523-97.21519-116.311031-97.21519-57.287523 0-105.895118 41.663653-116.311031 97.21519H55.551537c-12.151899 0-20.831826 8.679928-20.831826 20.831826s8.679928 20.831826 20.831826 20.831827h699.60217c10.415913 55.551537 57.287523 97.21519 116.311031 97.21519 57.287523 0 105.895118-41.663653 116.311031-97.21519h67.703435c12.151899 0 20.831826-8.679928 20.831827-20.831827s-8.679928-20.831826-20.831827-20.831826z m-184.014466 97.21519c-41.663653 0-76.383363-34.719711-76.383364-76.383364 0-41.663653 34.719711-76.383363 76.383364-76.383363 41.663653 0 76.383363 34.719711 76.383363 76.383363 0 41.663653-34.719711 76.383363-76.383363 76.383364z"></path></symbol></svg>
+        <val data-name="site_url" data-value="https://www.oschina.net"></val>      <val data-name="space_user_url" data-value="https://my.oschina.net/chixn"></val>      <val data-name="g_user_url" data-value=""></val>      <val data-name="api_prefix" data-value="/action"></val>      <val data-name="g_user_code" data-value=""></val>     <val data-name="g_user_id" data-value=""></val>     <val data-name="g_user" data-value=""></val>     <val data-name="login_page" data-value="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fchixn%2Fblog%2F471755"></val> 
+                <val data-name="weixinAppId" data-value="wx880def15e694b905"></val>
+        <val data-name="weixinTimestamp" data-value="1582208969589"></val>
+        <val data-name="weixinNonceStr" data-value="82a096e1-6c20-407d-be76-d6a3ecd6e78f"></val>
+        <val data-name="weixinSignature" data-value="20bbf05e7dd8b1b603f432116e430ba2974027d1"></val>
+        <val data-name="weixinShareUrl" data-value="https://my.oschina.net/chixn/blog/471755"></val>                             
+                <val data-name="is_detail_page" data-value="true"></val>
+
+        
+        <div class="ui left inverted sidebar vertical menu" id="mobileNavSidebar">
+        <a href="https://www.oschina.net/" class="item">首页</a>
+        <a href="https://www.oschina.net/project" class="item project">开源软件</a>
+        <a href="https://www.oschina.net/question" class="item question">问答</a>
+        <a href="https://www.oschina.net/tweets" class="item tweet">动弹</a>
+        <a href="https://www.oschina.net/blog" class="item blog">博客</a>
+        <a href="https://www.oschina.net/translate" class="item translate">翻译</a>
+        <a href="https://www.oschina.net/news" class="item news">资讯</a>
+        <a href="https://gitee.com/?utm_source=oschina&amp;utm_medium=link-index&amp;utm_campaign=home" class="item gitee" target="_blank">码云</a>
+        <a href="https://zb.oschina.net/projects/list.html" class="item" target="_blank">众包</a>
+        <a href="https://www.oschina.net/event" class="item">活动</a>
+        <a href="https://www.oschina.net/event/ych" class="item meetup">源创会</a>
+        <a href="https://job.oschina.net/" class="item" target="_blank">求职/招聘</a>
+        <a href="https://www.oschina.net/question/topic/masteronline" class="item">高手问答</a>
+        <a href="https://www.oschina.net/question/topic/osc-interview" class="item">开源访谈</a>
+        <a href="https://my.oschina.net/editorial-story" class="item">周刊</a>
+        <a href="https://www.oschina.net/company" class="item">公司开源导航页</a>
+    </div>
+        <div class="ui right inverted sidebar vertical menu" id="mobileUserSidebar">
+                    <a class="item" href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fchixn%2Fblog%2F471755">登录</a>
+            <a class="item" href="https://www.oschina.net/home/reg?goto_page=https%3A%2F%2Fmy.oschina.net%2Fchixn%2Fblog%2F471755">注册</a>
+            </div>
+
+        <div class="ui vertical inverted right sidebar menu" id="sideMenu">
+    <div class="header">
+        <b>文档章节</b>
+    </div>
+    <div class="ui basic segment" id="sideMenuBody"><ul><li><a href="https://my.oschina.net/chixn/blog/471755#h3_1">一、新建项目</a></li>
+<li><a href="https://my.oschina.net/chixn/blog/471755#h3_2">二、项目参数配置</a></li>
+<ul><li><a href="https://my.oschina.net/chixn/blog/471755#h4_3">1．新建Module</a></li>
+<li><a href="https://my.oschina.net/chixn/blog/471755#h4_4">2．建Jetty运行模块</a></li>
+<ul><li><a href="https://my.oschina.net/chixn/blog/471755#h5_5">（1）新建模块</a></li>
+<li><a href="https://my.oschina.net/chixn/blog/471755#h5_6">（2）导入类库</a></li>
+</ul><li><a href="https://my.oschina.net/chixn/blog/471755#h4_7">3．建Tomcat运行模块</a></li>
+<ul><li><a href="https://my.oschina.net/chixn/blog/471755#h5_8">（1）新建模块</a></li>
+<li><a href="https://my.oschina.net/chixn/blog/471755#h5_9">（2）导入类库</a></li>
+</ul></ul><li><a href="https://my.oschina.net/chixn/blog/471755#h3_10">三、修改运行配置</a></li>
+<ul><li><a href="https://my.oschina.net/chixn/blog/471755#h4_11">1．创建Jetty运行配置</a></li>
+<li><a href="https://my.oschina.net/chixn/blog/471755#h4_12">2．创建tomcat运行配置</a></li>
+</ul><li><a href="https://my.oschina.net/chixn/blog/471755#h3_13">四、添加源文件</a></li>
+<li><a href="https://my.oschina.net/chixn/blog/471755#h3_14">五、运行项目</a></li>
+<ul><li><a href="https://my.oschina.net/chixn/blog/471755#h4_15">1．在jetty下运行</a></li>
+<li><a href="https://my.oschina.net/chixn/blog/471755#h4_16">2．在tomcat下运行</a></li>
+</ul><li><a href="https://my.oschina.net/chixn/blog/471755#h3_17">六、项目实际部署</a></li>
+</ul></div>
+</div>
+<div class="ui black big launch right attached fixed button" id="sideMenuLauncher" style="display: block;">
+    <i class="list icon"></i>
+    <span class="text">文档章节</span>
+</div>
+
+
+        <div class="pusher  mobile-disabled-fixed-menu  ">
+                <div class="ui secondary inverted fixed menu" id="headerNavMenu">
+            <a class="item logo" href="https://www.oschina.net/" title="OSCHINA"><img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/logo_new.svg" alt="OSCHINA"></a>
+                                                <form action="https://www.oschina.net/search" class="item search-item">
+                <div class="ui icon input">
+                    <input type="hidden" name="scope" value="blog">
+                    <input placeholder="大家都在搜...." id="keyword" name="q" size="24" value="" type="text">
+                    <i class="search link icon"></i>
+                </div>
+                <div class="results"></div>
+            </form>
+            <div class="item download-item">
+                <a class="ui primary button" id="btnDownloadApp" href="https://www.oschina.net/app" target="_blank">下载APP</a>
+            </div>
+            <div class="ui popup top left transition hidden" id="btnDownloadAppContent">
+                <h3 class="header">OSCHINA App —— <br>关注技术领域的头条文章</h3>
+                <p>聚合全网技术文章，根据你的阅读喜好进行个性推荐</p>
+                <img width="200" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/osc_app_download_qrcode.png" alt="下载APP">
+            </div>
+            <div class="ui secondary text menu" id="menuList">
+                <a href="https://www.oschina.net/project" class="item project">开源软件</a>
+                <a href="https://www.oschina.net/question" class="item question">问答</a>
+                <a href="https://www.oschina.net/tweets" class="item tweet">动弹</a>
+                <a href="https://www.oschina.net/blog" class="item blog">博客</a>
+                <a href="https://www.oschina.net/translate" class="item translate">翻译</a>
+                <a href="https://www.oschina.net/news" class="item news">资讯</a>
+                <a href="https://gitee.com/?utm_source=oschina&amp;utm_medium=link-index&amp;utm_campaign=home" class="item gitee" target="_blank">码云<span class="floating ui red label giteetip">代码托管</span></a>
+                <a href="https://zb.oschina.net/projects/list.html" class="item" target="_blank">众包</a>
+                <a href="https://www.oschina.net/event" class="item event">活动</a>
+            </div>
+            <div class="ui dropdown item" id="moreMenu" tabindex="0">
+                更多 <i class="dropdown icon" tabindex="0"><div class="menu" tabindex="-1"></div></i>
+                <div class="menu" tabindex="-1">
+                    <a href="https://www.oschina.net/event/ych" class="item meetup"><i class="world icon"></i>源创会</a>
+                    <a href="https://job.oschina.net/" class="item" target="_blank"><i class="address card outline icon"></i>求职/招聘</a>
+                    <a href="https://www.oschina.net/question/topic/masteronline" class="item"><i class="spy icon"></i>高手问答</a>
+                    <a href="https://www.oschina.net/question/topic/osc-interview" class="item"><i class="coffee icon"></i>开源访谈</a>
+                    <a href="https://my.oschina.net/editorial-story" class="item"><i class="calendar outline icon"></i>周刊</a>
+                    <a href="https://www.oschina.net/company" class="item"><i class="building outline icon"></i>公司开源导航页</a>
+                </div>
+            </div>
+            <div class="right menu">
+                                    <a class="item" href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fchixn%2Fblog%2F471755">登录</a>
+                    <a class="item" href="https://www.oschina.net/home/reg?goto_page=https%3A%2F%2Fmy.oschina.net%2Fchixn%2Fblog%2F471755">注册</a>
+                            </div>
+        </div>
+                <div class="ui secondary inverted fixed menu" id="mobileHeaderNavMenu">
+            <a class="icon item toggle-mobile-nav-sidebar">
+                <i class="large content icon"></i>
+            </a>
+            <div class="logo back-to-top-toggle"><img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/logo_new.svg" alt="OSCHINA"></div>
+            <a class="icon item toggle-mobile-user-sidebar">
+                                    <i class="large user outline icon"></i>
+                            </a>
+        </div>
+                        <div id="mainScreen" class="grey">
+            <div class="ui container">
+                
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+<x-foo-define data-define="space-blog-detail"></x-foo-define> 
+<val data-name="objType" data-value="3"></val> <val data-name="objId" data-value="471755"></val> <val data-name="author_id" data-value="97615"></val> <val data-name="space_user_id" data-value="97615"></val> 
+<val data-name="fetchCommentsUrl" data-value="?type=comments"></val>              <val data-name="publishCommentUrl" data-value="/space/blog/add_comment"></val>    <val data-name="replyCommentUrl" data-value="/space/blog/add_comment"></val>      <val data-name="deleteCommentUrl" data-value="/space/blog/delete_blog_comments"></val>  
+<val data-name="weixinShareTitle" data-value="IntelliJ IDEA 14.1上JFinal开发环境搭建手册"></val> <val data-name="weixinShareImgUrl" data-value="http://static.oschina.net/uploads/img/201506/28235100_vmPq.jpg"></val> 
+<div class="ui internally grid blog-detail bg-wrap">
+    <div class="row">
+        <div class="two wide computer only column" style="height: 34678px; min-height: 338px;">
+            <div class="ui sticky float-menu fixed top" id="floatMenu" style="left: 149.6px; width: 128px !important; height: 338px !important; margin-top: 200px;">
+                <div class="ui vertical large compact menu">
+                                            <a class="item donate" donate="" data-id="471755" data-obj-type="16344358" data-subject="IntelliJ IDEA 14.1上JFinal开发环境搭建手册" data-donater="" data-author="97615" data-return-url="https://my.oschina.net/chixn/blog/471755" data-notify-url="https://my.oschina.net/action/donate/paySuccess">                             <i class="yen icon"></i>打赏</a>
+                                        <a class="item comment-btn" href="https://my.oschina.net/chixn/blog/471755#comments" title="共有 52 条评论"><i class="comment outline icon"></i>评论</a>
+                    <a class="item collect-btn " data-id="471755" data-user-id="97615" data-obj-type="3" data-max="99" data-tag-required="" data-current-user-id="" data-recommend-tags=""><i class="star outline icon"></i>收藏</a>
+                    <a class="item like article-like " data-id="471755"><i class="thumbs up outline icon"></i>点赞</a>
+                    <h5 class="ui item inverted brown header">分享文章</h5>
+                    <div class="bdsharebuttonbox reset left-menu bdshare-button-style0-16" data-tag="share-news" data-bd-bind="1582208970316">
+                        <a class="item" data-cmd="tsina" title="分享到新浪微博"><i class="weibo icon"></i>微博</a>
+                        <a class="item" data-cmd="sqq" title="分享到QQ好友"><i class="qq icon"></i>QQ</a>
+                        <a class="item" data-cmd="weixin" title="分享到微信"><i class="weixin icon"></i>微信</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="twelve wide computer sixteen wide tablet sixteen wide mobile column body-container">
+            <div class="float-menu-content">
+                <div class="ui breadcrumb">
+                    <a class="section" href="https://my.oschina.net/chixn">弦歌的个人空间</a>
+                                                                <i class="right chevron icon divider"></i>
+                        <a class="section" href="https://my.oschina.net/chixn?tab=newest&amp;catalogId=3336063">Intellij IDEA</a>
+                                        <i class="right chevron icon divider"></i>
+                    <div class="active section">正文</div>
+                </div>
+                <div class="article-detail">
+                                                                    <div class="ad-wrap">
+            <div id="blog-title-ad" data-traceid="blog_ali" data-tracepid="blogdown" style="">
+<script async="" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/f(9).txt"></script>
+  <ins class="adsbygoogle" style="display: block; width: 880px; height: 90px;" data-ad-client="ca-pub-7090564139599510" data-ad-slot="6565305284" data-adsbygoogle-status="done" data-overlap-observer-io="false"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:880px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:880px;background-color:transparent;"><iframe width="880" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0px;width:880px;height:90px;" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/saved_resource(1).html"></iframe></ins></ins></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+            </div>
+                                                    <h2 class="header">
+                        IntelliJ IDEA 14.1上JFinal开发环境搭建手册
+                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                            </h2>
+                    <div class="extra ui horizontal list meta-wrap">
+                        <div class="item">
+                            <a href="https://my.oschina.net/chixn" class="__user">                        <div class="osc-avatar small-portrait _35x35 avatar" title="弦歌" data-user-id="97615">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/97615_50.jpg" alt="弦歌" title="弦歌">
+            </div>
+            &nbsp;<span>弦歌</span></a>
+                            发布于 2015/06/28 23:53</div>
+                        <div class="item">字数 2577</div>
+                        <div class="item">阅读 4.5W</div>
+                        <div class="item collect-btn " data-id="471755" data-user-id="97615" data-obj-type="3" data-max="99" data-tag-required="" data-current-user-id="" data-recommend-tags="">收藏 <span data-collect-count="" data-id="471755" data-obj-type="3">91</span></div>
+                        <div class="item"><a class="normal like article-like " data-id="471755">点赞 <span data-article-like-count="">44</span></a></div>
+                        <div class="item comment-count"><a href="https://my.oschina.net/chixn/blog/471755#comments" class="normal"><i class="comment outline icon"></i> 评论 <span data-article-reply-count="">52</span></a></div>
+                                            </div>
+                    
+                    <div class="content" id="articleContent">
+                                                                                
+                        <p>JFinal官方的教程都是使用Eclipse进行开发的，而使用Intellij IDEA来做开发，不少地方和Eclipse区别还是很大的。</p>
+<p>本文参考了网上不少文章，主要沿用了网友的内容，一步一步做了尝试后记录下来，感谢万能的互联网。</p>
+<p>分别做了两个Module，分别使用Jetty和tomcat来运行。均测试均可正常跑起来。</p>
+<p>本文看起来虽然很长，但实际上步骤不多，为便于初学者了解Intellij IDEA,所以细节写的非常完善，每一步都有截图。</p>
+<p>本文使用的开发环境是Intellij IDEA 14.1.4版本。JFinal是2.0版。</p>
+<p><span style="color: rgb(192, 0, 0);">请大家注意：不是Intellij IDEA配置繁琐，而是我为了便于入门初学者少走弯路，写得非常细，凡是每一个出现的界面，我都截了图，而且文章里面包含了jetty和tomcat的两个项目。所以看起来比Eclipse好像复杂，其实不是的。简单地说，就五个步骤：建项目(类比于Eclipse的Workspace)，建模块(类比于Eclipse的Project)，引入Jar包，建Artifacts，写代码。就可以运行了。</span></p>
+<h3 id="h3_1"><a name="_Toc17587" rel="nofollow"></a>一、新建项目</h3>
+<p>新建一个项目，可以是空项目，也可以是连模块一起建的项目，本文为了演示Jetty和tomcat均能运行的效果，所以先建一个空项目，再分别建两个不同的module，以便区分。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235100_3rgx.jpg" rel="nofollow"><img title="wpsF73C.tmp" alt="wpsF73C.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235100_vmPq.jpg" width="558" height="405"></a></p>
+<p>如果项目和模块一起建，可以把Web Application选上，其他的默认就行。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235101_AGio.jpg" rel="nofollow"><img title="wpsF76C.tmp" alt="wpsF76C.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235101_qRog.jpg" width="558" height="567"></a></p>
+<p>因为我们要分别测试jetty和tomcat的效果，要建两个模块，所以先建一个空项目。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235102_J9q3.jpg" rel="nofollow"><img title="wpsF77D.tmp" alt="wpsF77D.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235103_e5lc.jpg" width="558" height="567"></a></p>
+<p>点击“Next”进入下一步。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235104_F0nO.jpg" rel="nofollow"><img title="wpsF79D.tmp" alt="wpsF79D.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235104_gse8.jpg" width="558" height="567"></a></p>
+<p>输入项目名称和项目所在目录，点击“Finish”即可。</p>
+<h3 id="h3_2"><a name="_Toc29753" rel="nofollow"></a>二、项目参数配置</h3>
+<h4 id="h4_3"><a name="_Toc4455" rel="nofollow"></a>1．新建Module</h4>
+<p>如果新建一个空项目，会立即出来一个Project Structure的配置窗口。如果是连模块一起建的，请从【File】-【Project Structure】中选择，对项目参数进行配置。</p>
+<p>首先指定项目所使用的JDK版本：</p>
+<p><img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/172633_oAbn_97615.png" class="zoom-in-cursor"><br></p>
+<p>如果要单独为每个模块指定JDK版本，也可以在模块中进行配置(要在下面的新建模块步骤之后才能操作)。</p>
+<p><img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/172735_2yEM_97615.png" class="zoom-in-cursor"></p>
+<p>下面开始新建模块。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235105_RFMm.jpg" rel="nofollow"><img title="wpsF7BD.tmp" alt="wpsF7BD.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235105_a3bo.jpg" width="558" height="397"></a></p>
+<p>选择Modules，准备新建Module。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235105_iZhm.jpg" rel="nofollow"><img title="wpsF7CE.tmp" alt="wpsF7CE.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235106_b2IM.jpg" width="558" height="397"></a></p>
+<h4 id="h4_4"><a name="_Toc18639" rel="nofollow"></a>2．建Jetty运行模块</h4>
+<h5 id="h5_5"><a name="_Toc32556" rel="nofollow"></a>（1）新建模块</h5>
+<p>我们先新建一个module，用于使用jetty来运行。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235112_EKdy.jpg" rel="nofollow"><img title="wpsF7DE.tmp" alt="wpsF7DE.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235112_e6j6.jpg" width="558" height="571"></a></p>
+<p>选上“Web Application”后，点击Next。</p>
+<p>在出现的窗口中，直接在Module name中输入想要新建的module名字，下面的Content root和Module file location中会自动把路径填进去。</p>
+<p>为了便于区分，我们把jetty运行的module命名为jf_jt。</p>
+<p>点击“Finish”。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235113_xIxo.jpg" rel="nofollow"><img title="wpsF81E.tmp" alt="wpsF81E.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235113_BnoA.jpg" width="558" height="571"></a></p>
+<p>此时会出现如下界面；</p>
+<p>选择“Paths”选项卡，选中“Use module compile output path”后，在“Output path”和“Test output path”中均写上类输出的路径。按照一般常规写法，我把这个目录放在module下，web\WEB-INF路径下的classes目录下。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235114_t5IN.jpg" rel="nofollow"><img title="wpsF83E.tmp" alt="wpsF83E.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235115_2IQs.jpg" width="558" height="397"></a></p>
+<p>点击“Apply”，把配置启用起来；</p>
+<h5 id="h5_6"><a name="_Toc27141" rel="nofollow"></a>（2）导入类库</h5>
+<p>然后点击左侧的Libraries选项卡；</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235115_bT0F.jpg" rel="nofollow"><img title="wpsF8AC.tmp" alt="wpsF8AC.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235116_R8z6.jpg" width="558" height="397"></a></p>
+<p>在做这一步之前，我们先要把需要的类库分别拷贝到我们建立的类库目录中。</p>
+<p>这个模块是需要jetty来运行的，所以需要JFinal的类库和jetty的类库，事先准备好这几个类库。</p>
+<p>Jfinal-2.0-all目录下有需要的类库文件。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235117_pBti.jpg" rel="nofollow"><img title="wpsF8DC.tmp" alt="wpsF8DC.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235118_5V4U.jpg" width="368" height="281"></a></p>
+<p>“jfinal-2.0-bin.jar”或“jfinal-2.0-bin-with-src.jar”是jfinal本身的jar包，任选一个都可以，为了方便调试，可以选择“jfinal-2.0-bin-with-src.jar”。</p>
+<p>目前这个项目是为了Jetty而建的，所以要把“jetty-server-8.1.8.jar”也要包含进去。</p>
+<p>&amp;#160;&amp;#160;&amp;#160;&amp;#160; 在电脑中找到项目目录，进入到Module路径中，新建文件夹；</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235118_JsSv.jpg" rel="nofollow"><img title="wpsF90C.tmp" alt="wpsF90C.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235119_xstj.jpg" width="558" height="684"></a></p>
+<p>新建一个classes目录(上文新建module时设置的输出目录)和lib目录；</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235119_NoRO.jpg" rel="nofollow"><img title="wpsF91C.tmp" alt="wpsF91C.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235120_IPtf.jpg" width="558" height="282"></a></p>
+<p>把“jfinal-2.0-bin.jar”和“jetty-server-8.1.8.jar”两个文件拷贝到刚才新建的lib目录下(注意，使用jfinal-2.0-bin.jar和使用jfinal-2.0-bin-src.jar，后续界面会略有不同，但差异不大)。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235120_kR5d.jpg" rel="nofollow"><img title="wpsF92D.tmp" alt="wpsF92D.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235121_30Sq.jpg" width="418" height="235"></a></p>
+<p>回到Intellij IDEA配置界面。</p>
+<p>选择左侧的Libraries选项卡，点击中间的“+”号，新增java类库。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235122_R5Ui.jpg" rel="nofollow"><img title="wpsF93D.tmp" alt="wpsF93D.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235122_y5nP.jpg" width="558" height="397"></a></p>
+<p>在弹出的窗口中，找到lib目录并选中刚才拷进去的“jfinal-2.0-bin-with-src.jar”包。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235123_hOop.jpg" rel="nofollow"><img title="wpsF94E.tmp" alt="wpsF94E.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235123_xs9E.jpg" width="558" height="455"></a></p>
+<p>点击“OK”。</p>
+<p>此时会让你选择这些类库将用于哪些module（如果你在项目中有多个module,在此均会列出来）在这里，我们选择这些类库用于“jf_jt”module。</p>
+<p>此时类库就会出现在列表里。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235124_FNZh.jpg" rel="nofollow"><img title="wpsF96E.tmp" alt="wpsF96E.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235124_1DKd.jpg" width="558" height="373"></a></p>
+<p>点击“Apply”，保存配置。</p>
+<p>再重复上述步骤，导入jetty的jar包。导入后如下图所示：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235125_OTWk.jpg" rel="nofollow"><img title="wpsF97F.tmp" alt="wpsF97F.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235129_JcU9.jpg" width="558" height="373"></a></p>
+<p>再选择左侧的“Artifacts”选项卡，此时会出现空白的Artifacts界面。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235129_D3Cl.jpg" rel="nofollow"><img title="wpsF99F.tmp" alt="wpsF99F.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235130_abDo.jpg" width="558" height="395"></a></p>
+<p>或出现已经有一个“jf_ft.war exploded”的界面(如果关闭后重新打开Project Structure界面就会出现)。建议：最好在导入类库后，点击“OK”，关闭本界面后，重新通过【File】-【Project Structure】菜单打开本界面后，选“Artifacts”选项卡进行操作，避免重复建立jf-ft.war exploded。</p>
+<p>重新打开界面，并选择Artifacts选项卡后，界面会如下图所示：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235130_W5Kg.jpg" rel="nofollow"><img title="wpsF9B0.tmp" alt="wpsF9B0.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235131_Kurz.jpg" width="558" height="373"></a></p>
+<p>此时窗口下部会出现一条告警信息。如上图红框部分。</p>
+<p>此时点击“Fix…”按键，选择“Add‘jfinal-2.0-bin-with-src’to the artifact”，即可。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235131_Mrpk.jpg" rel="nofollow"><img title="wpsF9C0.tmp" alt="wpsF9C0.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235132_gTrC.jpg" width="558" height="124"></a></p>
+<p>设置好的界面如下图所示（把Build on make选上）；</p>
+<p>点击“Apply”按钮保存设置；</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235133_FuED.jpg" rel="nofollow"><img title="wpsF9D1.tmp" alt="wpsF9D1.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235134_B9E0.jpg" width="558" height="453"></a></p>
+<p>再点击“+”号，添加一个“Web Application：Archive”，此时选“For ‘jfjt:war exploded’”；</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235135_HOJU.jpg" rel="nofollow"><img title="wpsF9E1.tmp" alt="wpsF9E1.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235137_P1R8.jpg" width="558" height="335"></a></p>
+<p>建好后，界面如下图所示(如果还有告警提示，按照上面步骤，点击“Fix”按键把类库添加进Artifact中);</p>
+<p>选中“Build on make”选项后，点“OK”按键保存并退出配置界面。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235137_OUYS.jpg" rel="nofollow"><img title="wpsF9F2.tmp" alt="wpsF9F2.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235138_t3qC.jpg" width="558" height="337"></a></p>
+<p>至此Jetty运行的模块已经建好。</p>
+<h4 id="h4_7"><a name="_Toc21659" rel="nofollow"></a>3．建Tomcat运行模块</h4>
+<h5 id="h5_8"><a name="_Toc21677" rel="nofollow"></a>（1）新建模块</h5>
+<p>点击【File】-【New】-【Module】：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235138_fv6e.jpg" rel="nofollow"><img title="wpsFA03.tmp" alt="wpsFA03.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235140_t1Gq.jpg" width="558" height="408"></a></p>
+<p>选上“Web Application”，并点“Next”：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235140_v1GG.jpg" rel="nofollow"><img title="wpsFA23.tmp" alt="wpsFA23.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235140_LWEi.jpg" width="558" height="468"></a></p>
+<p>填上Module的名称，这里起名为jf-tc,然后点击“Finish”：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235141_FJZ4.jpg" rel="nofollow"><img title="wpsFA33.tmp" alt="wpsFA33.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235141_w2kt.jpg" width="558" height="468"></a></p>
+<p>此时的界面是这样：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235142_6AKc.jpg" rel="nofollow"><img title="wpsFA44.tmp" alt="wpsFA44.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235143_rHfe.jpg" width="558" height="408"></a></p>
+<h5 id="h5_9"><a name="_Toc4456" rel="nofollow"></a>（2）导入类库</h5>
+<p>现在可以直接在IDEA的界面建目录classes和lib。</p>
+<p>鼠标右键点击[jf-tc]-[web]-[WEB-INF]目录，在出来的菜单里点击【New】-【Directory】。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235143_oBn2.jpg" rel="nofollow"><img title="wpsFA55.tmp" alt="wpsFA55.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235144_dkn6.jpg" width="558" height="408"></a></p>
+<p>输入classes和lib目录的名称：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235145_9Tfb.jpg" rel="nofollow"><img title="wpsFA65.tmp" alt="wpsFA65.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235145_LPPm.jpg" width="435" height="154"></a></p>
+<p>建好目录后的模块如下所示:</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235146_mAu7.jpg" rel="nofollow"><img title="wpsFA66.tmp" alt="wpsFA66.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235146_2RMM.jpg" width="204" height="196"></a></p>
+<p>点击【File】-【Project Structure】进入项目，步骤和上一个模块建立的时候一样，此时界面里已经有两个模块，选中jf-tc模块后，设置Path：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235147_FfdC.jpg" rel="nofollow"><img title="wpsFA77.tmp" alt="wpsFA77.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235149_E7Yw.jpg" width="558" height="352"></a></p>
+<p>接下来再设置Libraries，在此之前，需要把jfinal-2.0-bin-with-src.jar拷贝到lib目录下。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235149_1KyL.jpg" rel="nofollow"><img title="wpsFA78.tmp" alt="wpsFA78.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235149_mkhy.jpg" width="309" height="237"></a></p>
+<p>在“Libraries”选项卡中点“+”号，选“Java”：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235150_S0A2.jpg" rel="nofollow"><img title="wpsFA88.tmp" alt="wpsFA88.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235150_59Cs.jpg" width="558" height="352"></a></p>
+<p>这里只需要导入一个jar包即可(记住，目录不要选错，要选刚才拷进去的jf-tc模块下lib目录的jfinal-2.0-bin-with-src.jar文件)。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235151_0l2y.jpg" rel="nofollow"><img title="wpsFA99.tmp" alt="wpsFA99.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235152_cr0g.jpg" width="558" height="455"></a></p>
+<p>注意：选中目标Jar包后，选模块的时候，一定不要选错。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235152_t7dB.jpg" rel="nofollow"><img title="wpsFAAA.tmp" alt="wpsFAAA.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235153_8NX2.jpg" width="496" height="526"></a></p>
+<p>点“OK”后，来到Artifacts选项卡：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235153_9q1k.jpg" rel="nofollow"><img title="wpsFACA.tmp" alt="wpsFACA.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235154_V1jE.jpg" width="558" height="352"></a></p>
+<p>添加一个Artifact</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235154_00ac.jpg" rel="nofollow"><img title="wpsFADA.tmp" alt="wpsFADA.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235156_EMUt.jpg" width="558" height="352"></a></p>
+<p>记住不要选错模块。</p>
+<p>添加成功后，记住Fix掉警告信息(新加的两个Artifact都要fix)。然后都选上“Build on make”选项。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235157_Hl0x.jpg" rel="nofollow"><img title="wpsFAFB.tmp" alt="wpsFAFB.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235157_gwKG.jpg" width="558" height="318"></a></p>
+<p>至此，两个模块都建好，可以开始真正的编写代码之旅了。</p>
+<h3 id="h3_10"><a name="_Toc28432" rel="nofollow"></a>三、修改运行配置</h3>
+<h4 id="h4_11"><a name="_Toc31361" rel="nofollow"></a>1．创建Jetty运行配置</h4>
+<p>点击【run】-【Edit Configurations】菜单：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235159_a43o.jpg" rel="nofollow"><img title="wpsFB1B.tmp" alt="wpsFB1B.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235159_z2Cy.jpg" width="558" height="408"></a></p>
+<p>出现下面的界面，并点击左上角的“+”号，选“Application”选项：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235200_fMYt.jpg" rel="nofollow"><img title="wpsFB3B.tmp" alt="wpsFB3B.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235200_j135.jpg" width="558" height="417"></a></p>
+<p>设置一个名称，在这里命名为“jf-jt-jetty”。</p>
+<p>设置Main Class(在出来的“Choose Main Class”窗口里直接输入com.jfinal……,下面会直接把class列出来，不用搜索和查找).</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235201_jtLy.jpg" rel="nofollow"><img title="wpsFB7A.tmp" alt="wpsFB7A.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235202_iNAk.jpg" width="558" height="495"></a></p>
+<p>设好Main Class以后，设置“working directory”和“Use classpath of module”两项，如下图所示：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235202_eciC.jpg" rel="nofollow"><img title="wpsFB9B.tmp" alt="wpsFB9B.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235203_sGnV.jpg" width="557" height="349"></a></p>
+<p>点击“OK”，设置完成。</p>
+<h4 id="h4_12"><a name="_Toc2848" rel="nofollow"></a>2．创建tomcat运行配置</h4>
+<p>点击【run】-【Edit Configurations】菜单：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235203_Rbjq.jpg" rel="nofollow"><img title="wpsFBEA.tmp" alt="wpsFBEA.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235204_JK2B.jpg" width="558" height="408"></a></p>
+<p>选择【Tomcat Server】-【local】菜单：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235205_GVe4.jpg" rel="nofollow"><img title="wpsFC0A.tmp" alt="wpsFC0A.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235207_vW1L.jpg" width="473" height="587"></a></p>
+<p>配置Tomcat参数，起一个名字，然后点击最右边的“+”号，增加一个Artifact：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235208_UTEY.jpg" rel="nofollow"><img title="wpsFC1A.tmp" alt="wpsFC1A.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235209_5GeV.jpg" width="557" height="294"></a></p>
+<p>在出来的窗口中，选“jf-tc:war exploded”即exploded的那个war。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235209_U6Lh.jpg" rel="nofollow"><img title="wpsFC4A.tmp" alt="wpsFC4A.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235210_SqMy.jpg" width="496" height="526"></a></p>
+<p>点击“OK”后，就配置完成了。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235211_858b.jpg" rel="nofollow"><img title="wpsFC5B.tmp" alt="wpsFC5B.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235211_cxG2.jpg" width="558" height="239"></a></p>
+<p>注意，这个Application context里填写的路径，是你调试或运行时出现的url的后缀，比如，如果你在此设置“/”，则最后是通过“http://localhost:8080/”运行和调试；假如你在此设置为“/test”，则最后是通过“http://localhost:8080/test”进行访问和调试。</p>
+<h3 id="h3_13"><a name="_Toc8158" rel="nofollow"></a>四、添加源文件</h3>
+<p>现在可以添加源文件了。我们可以分别在两个项目下建立源文件(建源文件的过程不管上面jetty和tomcat项目都是一样的，我们以tomcat项目来举例):</p>
+<p>我们在src路径下，添加一个package名称为com.demo.</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235212_txUY.jpg" rel="nofollow"><img title="wpsFD75.tmp" alt="wpsFD75.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235212_urOA.jpg" width="558" height="408"></a></p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235213_ktMB.jpg" rel="nofollow"><img title="wpsFD85.tmp" alt="wpsFD85.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235213_Y4KJ.jpg" width="435" height="154"></a></p>
+<p>再在这个package下建三个类：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235215_qfXT.jpg" rel="nofollow"><img title="wpsFDA5.tmp" alt="wpsFDA5.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235215_NbfG.jpg" width="558" height="408"></a></p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235215_Fi2A.jpg" rel="nofollow"><img title="wpsFDA6.tmp" alt="wpsFDA6.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235216_ttSR.jpg" width="368" height="164"></a></p>
+<p>内容如下：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235216_YekL.jpg" rel="nofollow"><img title="wpsFDC7.tmp" alt="wpsFDC7.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235216_glPq.jpg" width="528" height="420"></a></p>
+<p>另外再建两个类HelloController.java和Indexcontroller.java,内容分别如下：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235217_9j4K.jpg" rel="nofollow"><img title="wpsFDC8.tmp" alt="wpsFDC8.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235217_59HP.jpg" width="528" height="209"></a></p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235218_Qr49.jpg" rel="nofollow"><img title="wpsFDD8.tmp" alt="wpsFDD8.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235219_8KGV.jpg" width="558" height="230"></a></p>
+<p>编辑模块下，web\WEB-INF路径下的web.xml文件，内容如下：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235220_nLEe.jpg" rel="nofollow"><img title="wpsFDE9.tmp" alt="wpsFDE9.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235224_T3EH.jpg" width="557" height="310"></a></p>
+<p>至此，tomcat部分已经完成，按同样的方式配置jetty部分(也可以直接把package和web.xml文件直接拷贝过去)。</p>
+<h3 id="h3_14"><a name="_Toc12160" rel="nofollow"></a>五、运行项目</h3>
+<h4 id="h4_15"><a name="_Toc29180" rel="nofollow"></a>1．在jetty下运行</h4>
+<p>点击【Run】-【Run】菜单：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235225_ga12.jpg" rel="nofollow"><img title="wpsFDF9.tmp" alt="wpsFDF9.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235225_HtJj.jpg" width="486" height="208"></a></p>
+<p>页面中间会出现让你选择运行哪个模块的选项，我们选择jetty的模块。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235225_4NjU.jpg" rel="nofollow"><img title="wpsFDFA.tmp" alt="wpsFDFA.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235228_hEZm.jpg" width="173" height="130"></a></p>
+<p>此时IDEA界面下半部会显示jetty的启动信息，如下：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235232_XrXp.jpg" rel="nofollow"><img title="wpsFE0B.tmp" alt="wpsFE0B.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235235_TVgo.jpg" width="440" height="273"></a></p>
+<p>说明jetty已经正常启动了。</p>
+<p>此时需要手动打开浏览器页面，输入“http://localhost”，就会出现Index控制器对应的页面。(注意，如果你的电脑上装了别的Web服务器，注意端口冲突)。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235237_kWkJ.jpg" rel="nofollow"><img title="wpsFE1C.tmp" alt="wpsFE1C.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235238_Pifw.jpg" width="349" height="238"></a></p>
+<p>IDEA下部窗口会出现相应的调试信息。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235240_lNEf.jpg" rel="nofollow"><img title="wpsFE2C.tmp" alt="wpsFE2C.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235242_B67s.jpg" width="558" height="425"></a></p>
+<p>输入http://localhost/hello,会出现hello控制器对应的页面。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235248_mTDM.jpg" rel="nofollow"><img title="wpsFE3D.tmp" alt="wpsFE3D.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235249_iQco.jpg" width="406" height="216"></a></p>
+<h4 id="h4_16"><a name="_Toc1425" rel="nofollow"></a>2．在tomcat下运行</h4>
+<p>同样点击【Run】-【Run】菜单，在页面中心的弹出菜单选“jf-tc-tomcat”。</p>
+<p>IDEA界面下半部分会显示启动tomcat过程中的日志，等待tomcat启动后，会自动调用本地浏览器窗口，把index页面内容显示出来。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235250_6eyX.jpg" rel="nofollow"><img title="wpsFE4D.tmp" alt="wpsFE4D.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235251_jFXi.jpg" width="558" height="292"></a></p>
+<p>输入http://loaclhost:8080/hello</p>
+<p>出来hello控制器中的内容：</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235252_oz5S.jpg" rel="nofollow"><img title="wpsFE4E.tmp" alt="wpsFE4E.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235253_3vY9.jpg" width="542" height="170"></a></p>
+<h3 id="h3_17"><a name="_Toc27683" rel="nofollow"></a>六、项目实际部署</h3>
+<p>Intellij IDEA打包的war文件位于项目根目录的out目录下。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235254_Zs7M.jpg" rel="nofollow"><img title="wpsFE5F.tmp" alt="wpsFE5F.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235254_XcZJ.jpg" width="306" height="189"></a></p>
+<p>把此文件拷贝到tomcat的webapps目录下(可以改名，例如改名为test.war),无需做任何修改，启动tomcat后，直接访问：<a href="http://ip:8080/test/" rel="nofollow">http://ip:8080/test/</a>即可正常访问页面。</p>
+<p>要更改输出目录，请在【File】-【Project Structure】-【Project】标签页修改即可。</p>
+<p><a href="http://static.oschina.net/uploads/img/201506/28235256_pNNf.jpg" rel="nofollow"><img title="wps3E7B.tmp" alt="wps3E7B.tmp" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/28235306_3FLP.jpg" width="558" height="339"></a></p>
+<p>大家可以加入QQ群进行交流【IntelliJ IDEA交流群 460969110<span style="line-height: 22.5px;">】</span></p>
+                    </div>
+
+                                                                    <div class="ad-wrap" style="margin-top: 20px;">
+            <div id="blog-title-ad" data-traceid="blog_ali" data-tracepid="blogdown" style="">
+<script async="" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/f(9).txt"></script>
+<!-- 博客详情页下方 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-7090564139599510" data-ad-slot="2321828009" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0px;width:728px;height:90px;" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/saved_resource(2).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<!--
+<script>
+    function success_jsonpCallback(data) {
+        var obj = eval(data);
+        if( obj.success ){
+            var contents = eval(obj.data[0].content);
+            if(contents.length > 0){
+                var content = contents[0];
+                $('#blog-title-ad').prepend("<a  href='"+ content.url +"' target='_blank' style='max-width:780px;'><img src='"+content.img+"'/></a>");
+                $('#blog-title-ad').show();
+            }
+            
+        }else {
+            $('#blog-title-ad').hide();
+        }
+    }
+    window.addEventListener("load", function() {
+         var url="  http://clickc.admaster.com.cn/c/a116493,b2949390,c3159,i0,m101,8a1,8b2,h";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            jsonp: "callback",
+            dataType: 'jsonp',
+            jsonpCallback: 'success_jsonpCallback',
+            contentType: "application/json; charset=utf-8",
+            success: function( response ) {
+                // do in callback
+            },
+            error:function(){
+                $('#blog-title-ad').hide();
+            }
+        });
+    }, false);
+</script>
+-->
+
+<!--
+<script type="text/javascript">
+$(function () {
+  var objId = $('val[data-name="objId"]').data('value');
+  $.get('https://www.oschina.net/action/apiv2/get_article_recommends_test?key=osc_3_' + objId);
+});
+</script>
+-->
+
+            </div>
+                                
+                    <div class="ui hidden divider"></div>
+
+                    <p style="text-align: center;">
+                                                    © 著作权归作者所有
+                                            </p>
+                </div>
+
+                                <div class="ui basic center aligned segment action">
+                    <div class="ui huge buttons">
+                                                    <a class="ui green button donate" donate="" data-id="471755" data-obj-type="16344358" data-subject="IntelliJ IDEA 14.1上JFinal开发环境搭建手册" data-donater="" data-author="97615" data-return-url="https://my.oschina.net/chixn/blog/471755" data-notify-url="https://my.oschina.net/action/donate/paySuccess">                                 <i class="yen icon"></i>打赏</a>
+                                                <a class="ui basic button like article-like " data-id="471755">
+                            <i class="thumbs up outline icon"></i>点赞 (<span data-article-like-count="">44</span>)
+                        </a>
+                        <a class="ui basic button collect-btn hover" data-id="471755" data-user-id="97615" data-obj-type="3" data-max="99" data-tag-required="" data-current-user-id="" data-recommend-tags=""><i class="star outline icon"></i>收藏 (<span data-collect-count="" data-id="471755" data-obj-type="3">91</span>)</a>
+                        <div class="ui basic dropdown share button bdsharebuttonbox reset dropdown-share bdshare-button-style0-16" data-tag="share-blog" tabindex="0" data-bd-bind="1582208970316">
+                            <i class="share icon"></i> <span>分享</span>
+                            <div class="menu" tabindex="-1">
+                                <a class="item" data-cmd="tsina"><i class="weibo icon"></i>微博</a>
+                                <a class="item" data-cmd="sqq"><i class="qq icon"></i>QQ</a>
+                                <a class="item" data-cmd="weixin"><i class="weixin icon"></i>微信</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui basic segment more-action">
+                        <a class="print-btn" href="https://my.oschina.net/chixn/blog/471755/print" target="_blank">
+                            <i class="print grey icon"></i>打印</a>
+                        <a class="ban" ban-report="" data-id="471755" data-obj-type="3" data-url="https://my.oschina.net/chixn/blog/471755">
+                            <i class="flag red icon"></i>举报</a>
+                    </div>
+                </div>
+
+                                
+
+                                <div class="around-articles-wrap">
+                                                            <div class="around-item around-left">
+                        <i class="angle left icon"></i>
+                        <span class="text">上一篇：</span>
+                        <a class="link" href="https://my.oschina.net/chixn/blog/481564">Intellij IDEA - JFinal内置Jetty改换端口</a>
+                    </div>
+                    
+                                                            <div class="around-item around-right">
+                        <span class="text">下一篇：</span>
+                        <a class="link" href="https://my.oschina.net/chixn/blog/470084">用Intellij IDEA 14.1创建Java Web项目</a>
+                        <i class="angle right icon"></i>
+                    </div>
+                                    </div>
+
+                                <div class="ui info message author-card">
+                    <div class="ui items">
+                        <div class="item author-card-item">
+                            <a class="ui avatar tiny image" href="https://my.oschina.net/chixn">
+                                                        <div class="osc-avatar large-portrait _80x80" title="弦歌" data-user-id="97615">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/97615_200.jpg" alt="弦歌" title="弦歌">
+            </div>
+                                        </a>
+                            <div class="content author-card-info">
+                                <div class="author-header clearfix">
+                                                                        <h3 class="author-name"><a class="__user" href="https://my.oschina.net/chixn">弦歌</a></h3>
+                                                                                                                <div class="ui mini images medals">
+                                                                                                                                                                                                        <img class="ui image popup-oscer" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/slogo1541993084965.png" alt="">
+                                                        <div class="ui flowing popup hidden items">
+                                                            <div class="medal-popup-box item">
+                                                                <img class="ui image" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/logo1541993084863.png">
+                                                                <div class="content">
+                                                                    <h3 class="header">参与源创会</h3>
+                                                                    <div class="desc text">“<a href="http://www.oschina.net/events">源创会</a>”在线下联结了各位 OSCer，推广开源项目和理念，很荣幸有你的参与~</div>
+                                                                    <div class="extra text">
+                                                                        领取时间：2014/02/12
+                                                                        <div class="text">领取条件：参与过开源中国“源创会”的 OSCer 可以领取</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                                                                                                                                        </div>
+                                                                    </div>
+                                <div class="ui horizontal list">
+                                    <div class="item">粉丝 <span class="followers-count" data-user-id="97615" data-followers-count="64">64</span></div>
+                                    <div class="item">博文 5</div>
+                                    <div class="item">码字总数 6466</div>
+                                    <div class="item">作品 0</div>
+                                </div>
+                                <div class="ui hidden fitted clearing divider"></div>
+                                                                                                    <div class="ui horizontal list">
+                                                                                    <div class="item"><i class="map marker alternate icon"></i> 闵行</div>
+                                                                                                                            <div class="item"><i class="address card outline icon"></i> 产品经理 </div>
+                                                                            </div>
+                                                                                                    <div class="ui hidden fitted clearing divider"></div>
+                                                                                                                    <a class="ui green compact button follow-btn" data-user-id="97615" data-follow-status="1"><i class="heart outline icon"></i><span class="text">关注</span></a>
+                                                                                                            <a class="ui green basic compact button send-message-btn" data-user-id="97615" data-user-name="弦歌"><i class="envelope outline icon"></i>私信</a>
+                                                                        <a class="ui green basic compact button" href="https://www.oschina.net/question/ask?user=97615" target="_blank"><i class="comment outline icon"></i>提问</a>
+                                                            </div>
+                            <div class="content panel-skills-radar" style="">
+                                <div class="skills-radar">
+                                    <div class="radar-wrap" radar="" data-user-id="97615" data-skills-num="5" data-detail-url="https://my.oschina.net/chixn/radar" data-container=".panel-skills-radar">
+                                        <div class="radar-map" style="position: relative;"><canvas width="350" height="152" style="width: 280px; height: 122px;"></canvas></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                                                    <div class="ui threaded comments secondary segment" id="commentsContainer">
+        <div class="ui inverted dimmer comments-loader">
+        <div class="ui text loader">加载中</div>
+    </div>
+
+        <div class="comments-wrap">
+                      
+
+
+                                                                           
+<h3 id="comments" class="ui header">评论(<span>52</span>)</h3>
+
+                        
+
+                <div class="comment" name="rpl_305149876" id="rpl_305149876" data-comment-id="305149876" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="3853891" data-comment-user-name="宇霁">
+            <a class="ui circular image avatar" href="https://my.oschina.net/u/3853891" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="宇霁" data-user-id="3853891">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/3853891_50.jpg" alt="宇霁" title="宇霁">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/u/3853891" target="_blank">宇霁</a>
+                                <div class="metadata">
+                    <span class="date">2018/05/08 11:16</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    解决了，需要输入/hello/hello(类名，方法名)
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="305149876" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_305149876">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_305148506" id="rpl_305148506" data-comment-id="305148506" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="3853891" data-comment-user-name="宇霁">
+            <a class="ui circular image avatar" href="https://my.oschina.net/u/3853891" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="宇霁" data-user-id="3853891">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/3853891_50.jpg" alt="宇霁" title="宇霁">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/u/3853891" target="_blank">宇霁</a>
+                                <div class="metadata">
+                    <span class="date">2018/05/08 09:22</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    为什么两种启动方式都可以访问到index页，但在地址后面输入/hello后又都不能转到hello页？
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="305148506" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_305148506">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_295286448" id="rpl_295286448" data-comment-id="295286448" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="591809" data-comment-user-name="_森屿海巷_">
+            <a class="ui circular image avatar" href="https://my.oschina.net/dupan0424" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="_森屿海巷_" data-user-id="591809">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/591809_50.jpg" alt="_森屿海巷_" title="_森屿海巷_">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/dupan0424" target="_blank">_森屿海巷_</a>
+                                <div class="metadata">
+                    <span class="date">2016/10/14 16:04</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    不错,点赞!
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="295286448" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_295286448">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_294472395" id="rpl_294472395" data-comment-id="294472395" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="2895774" data-comment-user-name="我不是李大侠">
+            <a class="ui circular image avatar" href="https://my.oschina.net/u/2895774" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="我不是李大侠" data-user-id="2895774">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/2895774_50.jpeg" alt="我不是李大侠" title="我不是李大侠">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/u/2895774" target="_blank">我不是李大侠</a>
+                                <div class="metadata">
+                    <span class="date">2016/08/28 13:26</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    好详细，博主知不知道我的idea为什么没有创建springmvc模板这一项，求解答
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="294472395" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_294472395">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_291551527" id="rpl_291551527" data-comment-id="291551527" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="135345" data-comment-user-name="whatcq">
+            <a class="ui circular image avatar" href="https://my.oschina.net/u/135345" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="whatcq" data-user-id="135345">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/135345_50.jpg" alt="whatcq" title="whatcq">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/u/135345" target="_blank">whatcq</a>
+                                <div class="metadata">
+                    <span class="date">2016/03/12 12:40</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    这种教程适合用视屏。
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="291551527" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_291551527">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_291364183" id="rpl_291364183" data-comment-id="291364183" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="2437573" data-comment-user-name="ken点宋">
+            <a class="ui circular image avatar" href="https://my.oschina.net/fateofnight" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="ken点宋" data-user-id="2437573">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/portrait.gif" alt="ken点宋" title="ken点宋">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/fateofnight" target="_blank">ken点宋</a>
+                                <div class="metadata">
+                    <span class="date">2016/03/01 16:28</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    <div class="ref"><h4>引用来自“未成年包子”的评论</h4>idea 怎么自动更新资源？，我现在改个类就得重启一下服务器。</div>在你的tomcat配置界面找到On frame deactivation 配置为 update classes and resoures
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="291364183" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_291364183">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_291364181" id="rpl_291364181" data-comment-id="291364181" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="2437573" data-comment-user-name="ken点宋">
+            <a class="ui circular image avatar" href="https://my.oschina.net/fateofnight" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="ken点宋" data-user-id="2437573">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/portrait.gif" alt="ken点宋" title="ken点宋">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/fateofnight" target="_blank">ken点宋</a>
+                                <div class="metadata">
+                    <span class="date">2016/03/01 16:28</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    <div class="ref"><h4>引用来自“未成年包子”的评论</h4>idea 怎么自动更新资源？，我现在改个类就得重启一下服务器。</div>在你的tomcat配置界面找到On frame deactivation 配置为 update classes and resoures
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="291364181" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_291364181">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_291364180" id="rpl_291364180" data-comment-id="291364180" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="2437573" data-comment-user-name="ken点宋">
+            <a class="ui circular image avatar" href="https://my.oschina.net/fateofnight" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="ken点宋" data-user-id="2437573">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/portrait.gif" alt="ken点宋" title="ken点宋">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/fateofnight" target="_blank">ken点宋</a>
+                                <div class="metadata">
+                    <span class="date">2016/03/01 16:28</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    <div class="ref"><h4>引用来自“未成年包子”的评论</h4>idea 怎么自动更新资源？，我现在改个类就得重启一下服务器。</div>在你的tomcat配置界面找到On frame deactivation 配置为 update classes and resoures
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="291364180" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_291364180">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_290536123" id="rpl_290536123" data-comment-id="290536123" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="1759572" data-comment-user-name="Jimmy哥">
+            <a class="ui circular image avatar" href="https://my.oschina.net/u/1759572" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="Jimmy哥" data-user-id="1759572">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/1759572_50.jpg" alt="Jimmy哥" title="Jimmy哥">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/u/1759572" target="_blank">Jimmy哥</a>
+                                <div class="metadata">
+                    <span class="date">2016/01/13 18:23</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    您好，请教一个问题：如何使IntelliJ IDEA在run/debug的过程中，自动编译源代码呢？<br>谢谢
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="290536123" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_290536123">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+                        
+
+                <div class="comment" name="rpl_290309580" id="rpl_290309580" data-comment-id="290309580" data-comment-parent-id="0" data-comment-is-last-level="false" data-comment-user-id="2471777" data-comment-user-name="DaShunOk">
+            <a class="ui circular image avatar" href="https://my.oschina.net/shudaodv" target="_blank">
+                                        <div class="osc-avatar small-portrait _35x35" title="DaShunOk" data-user-id="2471777">
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/2471777_50.jpeg" alt="DaShunOk" title="DaShunOk">
+            </div>
+                        </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/shudaodv" target="_blank">DaShunOk</a>
+                                <div class="metadata">
+                    <span class="date">2015/12/31 15:45</span>
+                </div>
+                <div class="text" data-emoji-render="">
+                    非常详细，很精彩
+                </div>
+                <div class="actions">
+                                                            <a class="ban" ban-report="" data-id="290309580" data-obj-type="12" data-url="https://my.oschina.net/chixn/blog/471755#rpl_290309580">
+                        <i class="ban icon"></i> 举报
+                    </a>
+                </div>
+            </div>
+                                </div>
+            
+                <div class="ui basic center aligned segment pagination-wrap" data-page="1">
+                                                                                                                <div class="ui pagination menu">
+                                                    <a class="disabled item prev-item">&lt;</a>
+                                                                                                                                            <a href="https://my.oschina.net/chixn/blog/471755?p=1" class="active item page-num-item">1</a>
+                                                                                <a href="https://my.oschina.net/chixn/blog/471755?p=2" class="item page-num-item">2</a>
+                                                                                <a href="https://my.oschina.net/chixn/blog/471755?p=3" class="item page-num-item">3</a>
+                                                                                <a href="https://my.oschina.net/chixn/blog/471755?p=4" class="item page-num-item">4</a>
+                                                                                <a href="https://my.oschina.net/chixn/blog/471755?p=5" class="item page-num-item">5</a>
+                                                                                <a href="https://my.oschina.net/chixn/blog/471755?p=6" class="item page-num-item">6</a>
+                                                                                                                        <a href="https://my.oschina.net/chixn/blog/471755?p=2" class="item next-item">&gt;</a>
+                                                            </div>
+                    </div>
+        </div>
+
+                <div id="commentForm"><form class="ui reply form comment-form"><div class="field"><textarea rows="4" placeholder="在这里发表你对此文的观点" maxlength="1000" class="disabled-resize"></textarea></div> <div class="field foot-bar"><div class="ui horizontal link small list toolbox"><a data-popup="toolbox-emoji" class="item"><i class="smile icon"></i>插入表情</a> <div class="ui popup bottom left transition hidden toolbox-popup toolbox-emoji"><div class="emoji-wrapper"><div class="ui secondary pointing menu"><a class="item active">People</a><a class="item">Nature</a><a class="item">Objects</a><a class="item">Places</a><a class="item">Symbols</a></div> <div class="emoji-list"><div class="ui ten column padded grid"><div class="column"><div title="bowtie" data-emoji="bowtie" class="emoji-item"></div></div><div class="column"><div title="smile" data-emoji="smile" class="emoji-item"></div></div><div class="column"><div title="laughing" data-emoji="laughing" class="emoji-item"></div></div><div class="column"><div title="blush" data-emoji="blush" class="emoji-item"></div></div><div class="column"><div title="smiley" data-emoji="smiley" class="emoji-item"></div></div><div class="column"><div title="relaxed" data-emoji="relaxed" class="emoji-item"></div></div><div class="column"><div title="smirk" data-emoji="smirk" class="emoji-item"></div></div><div class="column"><div title="heart_eyes" data-emoji="heart_eyes" class="emoji-item"></div></div><div class="column"><div title="kissing_heart" data-emoji="kissing_heart" class="emoji-item"></div></div><div class="column"><div title="kissing_closed_eyes" data-emoji="kissing_closed_eyes" class="emoji-item"></div></div><div class="column"><div title="flushed" data-emoji="flushed" class="emoji-item"></div></div><div class="column"><div title="relieved" data-emoji="relieved" class="emoji-item"></div></div><div class="column"><div title="satisfied" data-emoji="satisfied" class="emoji-item"></div></div><div class="column"><div title="grin" data-emoji="grin" class="emoji-item"></div></div><div class="column"><div title="wink" data-emoji="wink" class="emoji-item"></div></div><div class="column"><div title="stuck_out_tongue_winking_eye" data-emoji="stuck_out_tongue_winking_eye" class="emoji-item"></div></div><div class="column"><div title="stuck_out_tongue_closed_eyes" data-emoji="stuck_out_tongue_closed_eyes" class="emoji-item"></div></div><div class="column"><div title="grinning" data-emoji="grinning" class="emoji-item"></div></div><div class="column"><div title="kissing" data-emoji="kissing" class="emoji-item"></div></div><div class="column"><div title="kissing_smiling_eyes" data-emoji="kissing_smiling_eyes" class="emoji-item"></div></div><div class="column"><div title="stuck_out_tongue" data-emoji="stuck_out_tongue" class="emoji-item"></div></div><div class="column"><div title="sleeping" data-emoji="sleeping" class="emoji-item"></div></div><div class="column"><div title="worried" data-emoji="worried" class="emoji-item"></div></div><div class="column"><div title="frowning" data-emoji="frowning" class="emoji-item"></div></div><div class="column"><div title="anguished" data-emoji="anguished" class="emoji-item"></div></div><div class="column"><div title="open_mouth" data-emoji="open_mouth" class="emoji-item"></div></div><div class="column"><div title="grimacing" data-emoji="grimacing" class="emoji-item"></div></div><div class="column"><div title="confused" data-emoji="confused" class="emoji-item"></div></div><div class="column"><div title="hushed" data-emoji="hushed" class="emoji-item"></div></div><div class="column"><div title="expressionless" data-emoji="expressionless" class="emoji-item"></div></div><div class="column"><div title="unamused" data-emoji="unamused" class="emoji-item"></div></div><div class="column"><div title="sweat_smile" data-emoji="sweat_smile" class="emoji-item"></div></div><div class="column"><div title="sweat" data-emoji="sweat" class="emoji-item"></div></div><div class="column"><div title="disappointed_relieved" data-emoji="disappointed_relieved" class="emoji-item"></div></div><div class="column"><div title="weary" data-emoji="weary" class="emoji-item"></div></div><div class="column"><div title="pensive" data-emoji="pensive" class="emoji-item"></div></div><div class="column"><div title="disappointed" data-emoji="disappointed" class="emoji-item"></div></div><div class="column"><div title="confounded" data-emoji="confounded" class="emoji-item"></div></div><div class="column"><div title="fearful" data-emoji="fearful" class="emoji-item"></div></div><div class="column"><div title="cold_sweat" data-emoji="cold_sweat" class="emoji-item"></div></div><div class="column"><div title="persevere" data-emoji="persevere" class="emoji-item"></div></div><div class="column"><div title="cry" data-emoji="cry" class="emoji-item"></div></div><div class="column"><div title="sob" data-emoji="sob" class="emoji-item"></div></div><div class="column"><div title="joy" data-emoji="joy" class="emoji-item"></div></div><div class="column"><div title="astonished" data-emoji="astonished" class="emoji-item"></div></div><div class="column"><div title="scream" data-emoji="scream" class="emoji-item"></div></div><div class="column"><div title="neckbeard" data-emoji="neckbeard" class="emoji-item"></div></div><div class="column"><div title="tired_face" data-emoji="tired_face" class="emoji-item"></div></div><div class="column"><div title="angry" data-emoji="angry" class="emoji-item"></div></div><div class="column"><div title="rage" data-emoji="rage" class="emoji-item"></div></div><div class="column"><div title="triumph" data-emoji="triumph" class="emoji-item"></div></div><div class="column"><div title="sleepy" data-emoji="sleepy" class="emoji-item"></div></div><div class="column"><div title="yum" data-emoji="yum" class="emoji-item"></div></div><div class="column"><div title="mask" data-emoji="mask" class="emoji-item"></div></div><div class="column"><div title="sunglasses" data-emoji="sunglasses" class="emoji-item"></div></div><div class="column"><div title="dizzy_face" data-emoji="dizzy_face" class="emoji-item"></div></div><div class="column"><div title="imp" data-emoji="imp" class="emoji-item"></div></div><div class="column"><div title="smiling_imp" data-emoji="smiling_imp" class="emoji-item"></div></div><div class="column"><div title="neutral_face" data-emoji="neutral_face" class="emoji-item"></div></div><div class="column"><div title="no_mouth" data-emoji="no_mouth" class="emoji-item"></div></div><div class="column"><div title="innocent" data-emoji="innocent" class="emoji-item"></div></div><div class="column"><div title="alien" data-emoji="alien" class="emoji-item"></div></div><div class="column"><div title="yellow_heart" data-emoji="yellow_heart" class="emoji-item"></div></div><div class="column"><div title="blue_heart" data-emoji="blue_heart" class="emoji-item"></div></div><div class="column"><div title="purple_heart" data-emoji="purple_heart" class="emoji-item"></div></div><div class="column"><div title="heart" data-emoji="heart" class="emoji-item"></div></div><div class="column"><div title="green_heart" data-emoji="green_heart" class="emoji-item"></div></div><div class="column"><div title="broken_heart" data-emoji="broken_heart" class="emoji-item"></div></div><div class="column"><div title="heartbeat" data-emoji="heartbeat" class="emoji-item"></div></div><div class="column"><div title="heartpulse" data-emoji="heartpulse" class="emoji-item"></div></div><div class="column"><div title="two_hearts" data-emoji="two_hearts" class="emoji-item"></div></div><div class="column"><div title="revolving_hearts" data-emoji="revolving_hearts" class="emoji-item"></div></div><div class="column"><div title="cupid" data-emoji="cupid" class="emoji-item"></div></div><div class="column"><div title="sparkling_heart" data-emoji="sparkling_heart" class="emoji-item"></div></div><div class="column"><div title="sparkles" data-emoji="sparkles" class="emoji-item"></div></div><div class="column"><div title="star" data-emoji="star" class="emoji-item"></div></div><div class="column"><div title="star2" data-emoji="star2" class="emoji-item"></div></div><div class="column"><div title="dizzy" data-emoji="dizzy" class="emoji-item"></div></div><div class="column"><div title="boom" data-emoji="boom" class="emoji-item"></div></div><div class="column"><div title="collision" data-emoji="collision" class="emoji-item"></div></div><div class="column"><div title="anger" data-emoji="anger" class="emoji-item"></div></div><div class="column"><div title="exclamation" data-emoji="exclamation" class="emoji-item"></div></div><div class="column"><div title="question" data-emoji="question" class="emoji-item"></div></div><div class="column"><div title="grey_exclamation" data-emoji="grey_exclamation" class="emoji-item"></div></div><div class="column"><div title="grey_question" data-emoji="grey_question" class="emoji-item"></div></div><div class="column"><div title="zzz" data-emoji="zzz" class="emoji-item"></div></div><div class="column"><div title="dash" data-emoji="dash" class="emoji-item"></div></div><div class="column"><div title="sweat_drops" data-emoji="sweat_drops" class="emoji-item"></div></div><div class="column"><div title="notes" data-emoji="notes" class="emoji-item"></div></div><div class="column"><div title="musical_note" data-emoji="musical_note" class="emoji-item"></div></div><div class="column"><div title="fire" data-emoji="fire" class="emoji-item"></div></div><div class="column"><div title="hankey" data-emoji="hankey" class="emoji-item"></div></div><div class="column"><div title="poop" data-emoji="poop" class="emoji-item"></div></div><div class="column"><div title="shit" data-emoji="shit" class="emoji-item"></div></div><div class="column"><div title="+1" data-emoji="+1" class="emoji-item"></div></div><div class="column"><div title="thumbsup" data-emoji="thumbsup" class="emoji-item"></div></div><div class="column"><div title="-1" data-emoji="-1" class="emoji-item"></div></div><div class="column"><div title="thumbsdown" data-emoji="thumbsdown" class="emoji-item"></div></div><div class="column"><div title="ok_hand" data-emoji="ok_hand" class="emoji-item"></div></div><div class="column"><div title="punch" data-emoji="punch" class="emoji-item"></div></div><div class="column"><div title="facepunch" data-emoji="facepunch" class="emoji-item"></div></div><div class="column"><div title="fist" data-emoji="fist" class="emoji-item"></div></div><div class="column"><div title="v" data-emoji="v" class="emoji-item"></div></div><div class="column"><div title="wave" data-emoji="wave" class="emoji-item"></div></div><div class="column"><div title="hand" data-emoji="hand" class="emoji-item"></div></div><div class="column"><div title="raised_hand" data-emoji="raised_hand" class="emoji-item"></div></div><div class="column"><div title="open_hands" data-emoji="open_hands" class="emoji-item"></div></div><div class="column"><div title="point_up" data-emoji="point_up" class="emoji-item"></div></div><div class="column"><div title="point_down" data-emoji="point_down" class="emoji-item"></div></div><div class="column"><div title="point_left" data-emoji="point_left" class="emoji-item"></div></div><div class="column"><div title="point_right" data-emoji="point_right" class="emoji-item"></div></div><div class="column"><div title="raised_hands" data-emoji="raised_hands" class="emoji-item"></div></div><div class="column"><div title="pray" data-emoji="pray" class="emoji-item"></div></div><div class="column"><div title="point_up_2" data-emoji="point_up_2" class="emoji-item"></div></div><div class="column"><div title="clap" data-emoji="clap" class="emoji-item"></div></div><div class="column"><div title="muscle" data-emoji="muscle" class="emoji-item"></div></div><div class="column"><div title="metal" data-emoji="metal" class="emoji-item"></div></div><div class="column"><div title="fu" data-emoji="fu" class="emoji-item"></div></div><div class="column"><div title="walking" data-emoji="walking" class="emoji-item"></div></div><div class="column"><div title="runner" data-emoji="runner" class="emoji-item"></div></div><div class="column"><div title="running" data-emoji="running" class="emoji-item"></div></div><div class="column"><div title="couple" data-emoji="couple" class="emoji-item"></div></div><div class="column"><div title="family" data-emoji="family" class="emoji-item"></div></div><div class="column"><div title="two_men_holding_hands" data-emoji="two_men_holding_hands" class="emoji-item"></div></div><div class="column"><div title="two_women_holding_hands" data-emoji="two_women_holding_hands" class="emoji-item"></div></div><div class="column"><div title="dancer" data-emoji="dancer" class="emoji-item"></div></div><div class="column"><div title="dancers" data-emoji="dancers" class="emoji-item"></div></div><div class="column"><div title="ok_woman" data-emoji="ok_woman" class="emoji-item"></div></div><div class="column"><div title="no_good" data-emoji="no_good" class="emoji-item"></div></div><div class="column"><div title="information_desk_person" data-emoji="information_desk_person" class="emoji-item"></div></div><div class="column"><div title="raising_hand" data-emoji="raising_hand" class="emoji-item"></div></div><div class="column"><div title="bride_with_veil" data-emoji="bride_with_veil" class="emoji-item"></div></div><div class="column"><div title="person_with_pouting_face" data-emoji="person_with_pouting_face" class="emoji-item"></div></div><div class="column"><div title="person_frowning" data-emoji="person_frowning" class="emoji-item"></div></div><div class="column"><div title="bow" data-emoji="bow" class="emoji-item"></div></div><div class="column"><div title="couplekiss" data-emoji="couplekiss" class="emoji-item"></div></div><div class="column"><div title="couple_with_heart" data-emoji="couple_with_heart" class="emoji-item"></div></div><div class="column"><div title="massage" data-emoji="massage" class="emoji-item"></div></div><div class="column"><div title="haircut" data-emoji="haircut" class="emoji-item"></div></div><div class="column"><div title="nail_care" data-emoji="nail_care" class="emoji-item"></div></div><div class="column"><div title="boy" data-emoji="boy" class="emoji-item"></div></div><div class="column"><div title="girl" data-emoji="girl" class="emoji-item"></div></div><div class="column"><div title="woman" data-emoji="woman" class="emoji-item"></div></div><div class="column"><div title="man" data-emoji="man" class="emoji-item"></div></div><div class="column"><div title="baby" data-emoji="baby" class="emoji-item"></div></div><div class="column"><div title="older_woman" data-emoji="older_woman" class="emoji-item"></div></div><div class="column"><div title="older_man" data-emoji="older_man" class="emoji-item"></div></div><div class="column"><div title="person_with_blond_hair" data-emoji="person_with_blond_hair" class="emoji-item"></div></div><div class="column"><div title="man_with_gua_pi_mao" data-emoji="man_with_gua_pi_mao" class="emoji-item"></div></div><div class="column"><div title="man_with_turban" data-emoji="man_with_turban" class="emoji-item"></div></div><div class="column"><div title="construction_worker" data-emoji="construction_worker" class="emoji-item"></div></div><div class="column"><div title="cop" data-emoji="cop" class="emoji-item"></div></div><div class="column"><div title="angel" data-emoji="angel" class="emoji-item"></div></div><div class="column"><div title="princess" data-emoji="princess" class="emoji-item"></div></div><div class="column"><div title="smiley_cat" data-emoji="smiley_cat" class="emoji-item"></div></div><div class="column"><div title="smile_cat" data-emoji="smile_cat" class="emoji-item"></div></div><div class="column"><div title="heart_eyes_cat" data-emoji="heart_eyes_cat" class="emoji-item"></div></div><div class="column"><div title="kissing_cat" data-emoji="kissing_cat" class="emoji-item"></div></div><div class="column"><div title="smirk_cat" data-emoji="smirk_cat" class="emoji-item"></div></div><div class="column"><div title="scream_cat" data-emoji="scream_cat" class="emoji-item"></div></div><div class="column"><div title="crying_cat_face" data-emoji="crying_cat_face" class="emoji-item"></div></div><div class="column"><div title="joy_cat" data-emoji="joy_cat" class="emoji-item"></div></div><div class="column"><div title="pouting_cat" data-emoji="pouting_cat" class="emoji-item"></div></div><div class="column"><div title="japanese_ogre" data-emoji="japanese_ogre" class="emoji-item"></div></div><div class="column"><div title="japanese_goblin" data-emoji="japanese_goblin" class="emoji-item"></div></div><div class="column"><div title="see_no_evil" data-emoji="see_no_evil" class="emoji-item"></div></div><div class="column"><div title="hear_no_evil" data-emoji="hear_no_evil" class="emoji-item"></div></div><div class="column"><div title="speak_no_evil" data-emoji="speak_no_evil" class="emoji-item"></div></div><div class="column"><div title="guardsman" data-emoji="guardsman" class="emoji-item"></div></div><div class="column"><div title="skull" data-emoji="skull" class="emoji-item"></div></div><div class="column"><div title="feet" data-emoji="feet" class="emoji-item"></div></div><div class="column"><div title="lips" data-emoji="lips" class="emoji-item"></div></div><div class="column"><div title="kiss" data-emoji="kiss" class="emoji-item"></div></div><div class="column"><div title="droplet" data-emoji="droplet" class="emoji-item"></div></div><div class="column"><div title="ear" data-emoji="ear" class="emoji-item"></div></div><div class="column"><div title="eyes" data-emoji="eyes" class="emoji-item"></div></div><div class="column"><div title="nose" data-emoji="nose" class="emoji-item"></div></div><div class="column"><div title="tongue" data-emoji="tongue" class="emoji-item"></div></div><div class="column"><div title="love_letter" data-emoji="love_letter" class="emoji-item"></div></div><div class="column"><div title="bust_in_silhouette" data-emoji="bust_in_silhouette" class="emoji-item"></div></div><div class="column"><div title="busts_in_silhouette" data-emoji="busts_in_silhouette" class="emoji-item"></div></div><div class="column"><div title="speech_balloon" data-emoji="speech_balloon" class="emoji-item"></div></div><div class="column"><div title="thought_balloon" data-emoji="thought_balloon" class="emoji-item"></div></div><div class="column"><div title="feelsgood" data-emoji="feelsgood" class="emoji-item"></div></div><div class="column"><div title="finnadie" data-emoji="finnadie" class="emoji-item"></div></div><div class="column"><div title="goberserk" data-emoji="goberserk" class="emoji-item"></div></div><div class="column"><div title="godmode" data-emoji="godmode" class="emoji-item"></div></div><div class="column"><div title="hurtrealbad" data-emoji="hurtrealbad" class="emoji-item"></div></div><div class="column"><div title="rage1" data-emoji="rage1" class="emoji-item"></div></div><div class="column"><div title="rage2" data-emoji="rage2" class="emoji-item"></div></div><div class="column"><div title="rage3" data-emoji="rage3" class="emoji-item"></div></div><div class="column"><div title="rage4" data-emoji="rage4" class="emoji-item"></div></div><div class="column"><div title="suspect" data-emoji="suspect" class="emoji-item"></div></div><div class="column"><div title="trollface" data-emoji="trollface" class="emoji-item"></div></div></div></div></div></div> <a class="item"><i class="hashtag icon"></i>插入软件</a></div> <div class="count">104/1000</div> <div class="ui primary labeled icon button right floated"><i class="icon edit"></i> 发表评论
+                    </div></div></form> <div class="ui mini message hidden" style="display: none;"><i class="icon info"></i> <span></span></div></div>
+    </div>
+
+
+
+                            </div>
+                        <div class="ui basic segment article-list">
+                <div class="scroll-tab hidden-scroll">
+                    <div class="ui green pointing secondary massive menu spaceBlog-tab">
+                        <a class="active item" data-tab="relArticleList">相关文章</a>
+                        <a class="item" data-tab="newArticleList">最新文章</a>
+                    </div>
+                </div>
+                <div class="ui basic segment active tab article-list" data-tab="relArticleList" id="relArticleList">
+                                          
+
+    <div class="ui very relaxed items list-container blog-detail-list-container">
+                                    <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://www.oschina.net/question/1015065_2189579" target="_blank" title="jfinal maven项目jetty如何使用支持jsp">jfinal maven项目jetty如何使用支持jsp</a>
+                        <div class="description">
+                            <p class="line-clamp">我在IntelliJ 搭建jfinal + maven环境，依赖如下： 启动类： Controller： 以上配置启动正常但是访问jsp页面会报错： 我有2个问题： 1. 如何配置在开发环境（IntelliJ IDEA）maven+jetty＋j...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">sucanber</div>
+                                <div class="item">2016/07/27</div>
+
+                                <div class="item"><i class="eye icon"></i> 2K</div>
+                                <div class="item"><i class="comment outline icon"></i> 6</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://www.oschina.net/question/929757_136931" target="_blank" title="关于jfinal在idea中的部署问题">关于jfinal在idea中的部署问题</a>
+                        <div class="description">
+                            <p class="line-clamp">@JFinal 你好，想跟你请教个问题： 请问在intellij idea 里怎样使配置的路由立即生效？ 我使用的是 idea + tomcat + jrebel，发现每次注册新的contrller都必须重启tomcat啊。 ps:刚刚看了一下...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">hikevin</div>
+                                <div class="item">2013/12/10</div>
+
+                                <div class="item"><i class="eye icon"></i> 5.5K</div>
+                                <div class="item"><i class="comment outline icon"></i> 10</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://www.oschina.net/question/234674_112199" target="_blank" title="在Intellij IDEA中Jfinal不能自动重新加载">在Intellij IDEA中Jfinal不能自动重新加载</a>
+                        <div class="description">
+                            <p class="line-clamp">@JFinal 你好，想跟你请教个问题：我使用的开发环境不是标准的Eclipse，我使用的是Intellij IDEA,我把File-&gt; Project Structure-&gt;Project compiler output中输出的路径设置为：G:\Work\jfina...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">糖豆</div>
+                                <div class="item">2013/05/24</div>
+
+                                <div class="item"><i class="eye icon"></i> 3.3K</div>
+                                <div class="item"><i class="comment outline icon"></i> 6</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://www.oschina.net/question/942197_121077" target="_blank" title="在IDEA中使用Log4j ，设置的日志文件拒绝访问">在IDEA中使用Log4j ，设置的日志文件拒绝访问</a>
+                        <div class="description">
+                            <p class="line-clamp">@JFinal 昨天在IDEA开发环境下 想搭建一个JFinal开发环境 ，搭建完后，启动tomcat发现了Log4j 设置的日志文件拒绝访问， log4j.properties 文件配置如下: log4j.rootLogger=WARN, stdout, fi...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">赖芳升</div>
+                                <div class="item">2013/08/08</div>
+
+                                <div class="item"><i class="eye icon"></i> 6.8K</div>
+                                <div class="item"><i class="comment outline icon"></i> 3</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://www.oschina.net/question/2380664_238831" target="_blank" title="JFinal在IntelliJ IDEA 14.1.3运行报错">JFinal在IntelliJ IDEA 14.1.3运行报错</a>
+                        <div class="description">
+                            <p class="line-clamp">@JFinal 你好，想跟你请教个问题： 最近才上手JFinal和IntelliJ IDEA 14.1.3 感觉自己以前ssh+eclipse简直low爆了 JFinal确实很好用，非常之精妙，细微的东西还在体会中 IDEA也是比eclipse好...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">zeroGray</div>
+                                <div class="item">2015/06/05</div>
+
+                                <div class="item"><i class="eye icon"></i> 262</div>
+                                <div class="item"><i class="comment outline icon"></i> 1</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                        </div>
+    <div class="page-load-status">
+        <p class="infinite-scroll-request">
+            <i class="ui active small inline loader" style="display: none;"></i>
+        </p>
+        <p class="infinite-scroll-last">没有更多内容</p>
+        <p class="infinite-scroll-error">加载失败，请刷新页面</p>
+    </div>
+    <a class="ui fluid button load-more-button">加载更多</a>
+                <p class="pagination" style="display: none;">
+            <a class="rel-pagination pagination__next" style="display: none" href="https://my.oschina.net/chixn/blog/widgets/_blog_detail_list_rel?obj=471755&amp;p=2&amp;type=ajax">下一页</a>
+        </p>
+                    </div>
+                <div class="ui basic segment tab article-list" data-tab="newArticleList" id="newArticleList">
+                                          
+
+    <div class="ui very relaxed items list-container blog-detail-list-container">
+                                                        <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/u/3982771/blog/3168757" target="_blank" title="修改input、textarea的placeholder属性">修改input、textarea的placeholder属性</a>
+                            <div class="description">
+                                <p class="line-clamp">input::-webkit-input-placeholder{}    /* 使用webkit内核的浏览器 */input:-moz-placeholder{}                  /* Firefox版本4-18 */input::-moz-placeholder{}                  /*......</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">cdgogo</div>
+                                    <div class="item">16分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 38</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                    </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/u/3371661/blog/3168756" target="_blank" title="laravel--laravel的重定向类Redirector">laravel--laravel的重定向类Redirector</a>
+                            <div class="description">
+                                <p class="line-clamp">laravel的重定向类Redirector在laravel5中,重定向类可以直接通过redirect()方法直接获取,不需要声明,有几个常用的方法:redirect() -&gt; to( “重定向到指定的地址或者路由器当中”):可以简...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">dragon_tech</div>
+                                    <div class="item">16分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 37</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                            <div class="images">
+                                <a class="ui small image" href="https://my.oschina.net/u/3371661/blog/3168756" target="_blank" title="laravel--laravel的重定向类Redirector">
+                                    <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/1075808-20180121220203553-1075589714.png" alt="" data-img-render="" style="width: auto; height: 100%;">
+                                </a>
+                            </div>
+                                            </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/lihua20103181/blog/3168753" target="_blank" title="分布式锁深度剖析-疫情不断，学习怎能断">分布式锁深度剖析-疫情不断，学习怎能断</a>
+                            <div class="description">
+                                <p class="line-clamp">疫情不断，学习怎能断，今天主要学习分布式锁相关原理 分布式锁深度剖析 1、分布式锁的应用场景 生产一个具体业务场景的唯一订单编号，并发场景下订单号生产会重复嘛？ 2、分布式锁的原理、实...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">lihua20103181</div>
+                                    <div class="item">24分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 153</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                            <div class="images">
+                                <a class="ui small image" href="https://my.oschina.net/lihua20103181/blog/3168753" target="_blank" title="分布式锁深度剖析-疫情不断，学习怎能断">
+                                    <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/up-670d9526f3086d9695fa9ad282a23e23e1a.png" alt="" data-img-render="" style="width: auto; height: 100%;">
+                                </a>
+                            </div>
+                                            </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/ithuang/blog/3168750" target="_blank" title="java面向对象2(5)this和super调用构造详解">java面向对象2(5)this和super调用构造详解</a>
+                            <div class="description">
+                                <p class="line-clamp">this和super调用构造 1.调用构造方法 调用当前类的某个构造方法：this(参数) 调用当前类父类的某个构造方法：super(参数) 如果某个构造方法中，没有使用this或super关键字调用构造方法，Jav...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">煌sir</div>
+                                    <div class="item">29分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 67</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                            <div class="images">
+                                <a class="ui small image" href="https://my.oschina.net/ithuang/blog/3168750" target="_blank" title="java面向对象2(5)this和super调用构造详解">
+                                    <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/up-fdf248edd8865f5fade7820b4d0c57d4f6f.png" alt="" data-img-render="" style="width: auto; height: 100%;">
+                                </a>
+                            </div>
+                                            </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/Oaki/blog/3168747" target="_blank" title="二分查找法">二分查找法</a>
+                            <div class="description">
+                                <p class="line-clamp">思路 二分查找法只能应用于有序的数组。 将要查找的元素和数组中间的元素作比较， 如果要查找的元素比数组中间的元素小，那么到左半部分查找； 如果要查找的元素比数组中间的元素大，那么到右...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">Oaki</div>
+                                    <div class="item">35分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 58</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                    </div>
+                                        </div>
+    <div class="page-load-status">
+        <p class="infinite-scroll-request">
+            <i class="ui active small inline loader" style="display: none"></i>
+        </p>
+        <p class="infinite-scroll-last">没有更多内容</p>
+        <p class="infinite-scroll-error">加载失败，请刷新页面</p>
+    </div>
+    <a class="ui fluid button load-more-button">加载更多</a>
+                <p class="pagination">
+            <a class="news-pagination pagination__next" style="display: none" href="https://my.oschina.net/chixn/blog/widgets/_blog_detail_list_news?p=2&amp;type=ajax">下一页</a>
+        </p>
+                    </div>
+            </div>
+        </div>
+        <div class="two wide computer only column">
+                                                    </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/blog" defer="defer"></script>
+<script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/space"></script>
+
+<script>
+    // 百度分享
+    window._bd_share_config = {
+        common : {
+            bdText : 'IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA',
+            bdDesc : 'JFinal官方的教程都是使用Eclipse进行开发的，而使用Intellij IDEA来做开发，不少地方和Eclipse区别还是很大的。 本文参考了网上不少文章，主要沿用了网友的内容，一步一步做了尝试后记录下来，感谢万能的互联网。 分别做了两个Module，分别使用Jetty和tomcat来运行。均测试均可正常跑起来。 本文看起来虽然很长，但实际...',
+            bdUrl  : 'https://my.oschina.net/chixn/blog/471755',
+            bdPic  : 'http://static.oschina.net/uploads/img/201506/28235100_vmPq.jpg'
+        },
+        share : [{
+            bdSize : 16
+        }]
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://static.oschina.net/new-osc/js/utils/plugins/bdshare_api/share.js?v='+~(-new Date()/36e5)];
+</script>
+                        <div name="detail_show_footer" data-trace-id="detail_show" data-trace-ident="detail_show_footer">
+                <style>
+    .float-adbox {display:none;position:fixed;left:15px;bottom:15px;z-index: 10001;}
+    .float-adbox .float-people {width: 180px;}
+    .float-adbox .close-left {position:absolute;top:0;left:0;cursor:pointer;}
+</style>
+<div class="float-adbox" style="display: block;">
+    <a href="https://gitee.com/enterprises?utm_source=osc_widget" target="_blank">
+        <img alt="gitee-ent" class="float-people" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/up-8c81e190bad2c53f0e0264010548ce9bf59.png">
+        <img alt="close" class="close-left" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/up-2eb48a28dc7b48e9b5c3893c433878dc22e.png">
+    </a>
+</div>
+<!-- <script src="https://www.oschina.net/public/bower_components/jquery/dist/jquery.min.js"></script> -->
+<script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/js.cookie.min.js.下载"></script>
+<script>
+    (function () {
+        function loadScript(src, callback) {
+            var script = document.createElement('script'),
+                head = document.getElementsByTagName('head')[0];
+            script.type = 'text/javascript';
+            script.charset = 'UTF-8';
+            script.src = src;
+            if (script.addEventListener) {
+                script.addEventListener('load', function () {
+                    callback();
+                }, false);
+            } else if (script.attachEvent) {
+                script.attachEvent('onreadystatechange', function () {
+                    var target = window.event.srcElement;
+                    if (target.readyState == 'loaded') {
+                        callback();
+                    }
+                });
+            }
+            head.appendChild(script);
+        }
+        function loadAd() {
+            var leftPeople = $('.float-adbox');
+            var cookieName = 'visit-gitee-ent-200130';
+            var isVisit = Cookies.get(cookieName);
+            if (isVisit == 1) {
+                leftPeople.hide();
+            } else {
+                leftPeople.show();
+            }
+            $('.close-left').on('click', function (e) {
+                e.preventDefault();
+                Cookies.set(cookieName, 1, { expires: 90, path: '/' });
+                leftPeople.slideUp();
+            });
+        }
+        if (window.jQuery) {
+            loadAd();
+        } else {
+            loadScript('https://www.oschina.net/public/bower_components/jquery/dist/jquery.min.js', function () {
+                loadAd();
+            });
+        }
+    })();
+</script>
+
+            </div>
+            
+    <script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+         websocket = new WebSocket("wss://my.oschina.net/timing/timing/6f0f568c-73e8-4edb-ba72-135d272a5542/471755/3");
+                //连接成功建立
+        websocket.onopen = function () {
+        };
+        //接收到消息
+        websocket.onmessage = function (event) {
+        };
+        //连接发生错误
+        websocket.onerror = function () {
+        };
+        //连接关闭
+        websocket.onclose = function () {
+        };
+        //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+        window.onbeforeunload = function () {
+        };
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+</script>
+
+            </div>
+        </div>
+
+                <div id="footer" class="ui vertical footer segment mb-hide">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="eight wide mobile four wide tablet four wide computer column">
+                <h4 class="ui header">OSCHINA 社区</h4>
+                <div class="ui link list">
+                    <a class="item" href="https://www.oschina.net/home/aboutosc" target="_blank">关于我们</a>
+                    <a class="item" href="https://www.oschina.net/home/aboutosc" target="_blank">联系我们</a>
+                    <a class="item" href="https://www.oschina.net/home/aboutosc#partners#" target="_blank">合作伙伴</a>
+                    <a class="item" href="https://www.oschina.net/openapi" target="_blank">Open API</a>
+                </div>
+            </div>
+            <div class="eight wide mobile four wide tablet four wide computer column">
+                <h4 class="ui header">在线工具</h4>
+                <div class="ui link list">
+                    <a class="item" href="https://gitee.com/?utm_source=oschina&amp;utm_medium=link-bottom&amp;utm_campaign=home" target="_blank">码云 Gitee.com</a>
+                    <a class="item" href="https://gitee.com/enterprises?utm_source=oschina&amp;utm_medium=link-bottom&amp;utm_campaign=enterprises" target="_blank">企业研发管理</a>
+                    <a class="item" href="https://copycat.gitee.com/?utm_source=oschina&amp;utm_medium=link-bottom&amp;utm_campaign=copycat" target="_blank">CopyCat-代码克隆检测</a>
+                    <a class="item" href="https://tool.oschina.net/" target="_blank">实用在线工具</a>
+                </div>
+            </div>
+            <div class="center aligned eight wide mobile two wide tablet two wide computer column">
+                <h4 class="ui header">微信公众号</h4>
+                <img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/wechat_qrcode.jpg" alt="微信公众号">
+            </div>
+            <div class="center aligned eight wide mobile six wide tablet six wide computer column">
+                <h3 class="ui header">OSCHINA APP</h3>
+                <p>聚合全网技术文章，根据你的阅读喜好进行个性推荐</p>
+                <a href="https://www.oschina.net/app" target="_blank" class="ui large primary button">下载 APP</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="copyright">
+    <div class="ui container">
+        <div class="ui clearing basic segment">
+            <div class="ui left floated horizontal link list">
+                <div class="item">©OSCHINA(OSChina.NET)</div>
+                <div class="item mb-hide">工信部</div>
+                <a class="item mb-hide" href="http://www.copu.org.cn/" target="_blank" title="开源软件推进联盟">开源软件推进联盟</a>
+                <div class="item mb-hide">指定官方社区</div>
+            </div>
+            <div class="ui right floated horizontal link list">
+                <div class="item mb-hide">深圳市奥思网络科技有限公司版权所有</div>
+                <a href="http://beian.miit.gov.cn/" target="_blank" class="item">粤ICP备12009483号</a>
+            </div>
+        </div>
+    </div>
+</div>    </div>
+                                                        <div class="back-to-top back-to-top-toggle">
+        <div class="icon"><img src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/back-to-top.svg" alt="返回顶部"></div>
+        <div class="text">顶部</div>
+    </div>
+
+        <script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/semantic.min.js.下载"></script>
+    <script src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/jweixin-1.2.0.js.下载"></script>
+                <script type="text/javascript" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/space.b3a7132c.js.下载"></script>                
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else{
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a411c4d1664dd70048ee98afe7b28f0b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+                
+
+    
+
+<!-- Generated by oschina (init:1[ms],page:446[ms],ip:183.94.81.118) //--><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0px;width:0px;height:0px;" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/saved_resource(3).html"></iframe></ins></ins></ins><div class="ui dimmer modals page"><div class="ui mini delete-comment modal">
+    <div class="header">删除一条评论</div>
+    <div class="content">
+        <p>评论删除后，数据将无法恢复</p>
+    </div>
+    <div class="actions">
+        <div class="ui positive button">取消</div>
+        <div class="ui negative button">确定</div>
+    </div>
+</div></div><iframe id="google_osd_static_frame_4074036112208" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/saved_resource(4).html"></iframe></body><iframe id="google_esf" name="google_esf" src="./IntelliJ IDEA 14.1上JFinal开发环境搭建手册 - 弦歌的个人空间 - OSCHINA_files/zrt_lookup.html" data-ad-client="ca-pub-7090564139599510" style="display: none;"></iframe></html>
