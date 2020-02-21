@@ -1,0 +1,8 @@
+学习文档:
+jf-jt服务报错:
+    1.编译源文件错误 -->
+        解决: File-->product -->moulds-->Sources-->language level-->8
+    2.java.lang.NoClassDefFoundError: javax/servlet/ServletContext -->
+        解决: 引入jetty包File-->product -->libraries-->jetty-server
+    3.zip.ZipException: zip file is empty -->
+        解决: 检查项目jar包,有一个0kb,删除,重新导包
